@@ -1,0 +1,10 @@
+.popup__title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #000000;
+  margin: 5px auto 0;
+  min-width: 238px;
+}

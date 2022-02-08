@@ -1,0 +1,7 @@
+.element__item {
+  width: 100%;
+  min-height: 361px;
+  object-fit: cover;
+  background: #ffffff;
+  border-radius: 10px;
+}

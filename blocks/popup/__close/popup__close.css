@@ -1,0 +1,8 @@
+.popup__close {
+  background: url(../../../images/Close\ Icon.svg);
+  width: 20px;
+  height: 20px;
+  border-style: none;
+  transform: translateY(-36px);
+  align-self: flex-end;
+}

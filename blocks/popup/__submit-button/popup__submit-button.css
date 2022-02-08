@@ -1,0 +1,7 @@
+.popup__submit-button {
+  background: url(../../../images/Submit\ Button.svg);
+  width: 238px;
+  height: 46px;
+  border-style: none;
+  margin: 45px auto 0;
+}
