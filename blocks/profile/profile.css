@@ -1,12 +1,26 @@
 .profile {
-    margin: 42px 19px 0;
+  margin: 42px 19px 0;
+}
 
+@media screen and (min-width: 768px) {
+  .profile {
+    
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .profile {
+    
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
 
 
 @media screen and (min-width: 1280px) {
-    .profile {
-      margin: 77.25px 200px 0;
-      display: flex;
-    }
+  .profile {
+    margin: 77.25px 200px 0;
+    
   }
+}

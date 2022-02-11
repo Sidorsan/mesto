@@ -11,11 +11,14 @@
   margin: 36px auto 0;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) {
   .profile__add-button {
     background: url(../../../images/Add\ Button\ 150.svg);
     width: 150px;
     margin: auto 0 auto auto;
     
   }
+}
+.profile__add-button:hover {
+  opacity: 0.6;
 }

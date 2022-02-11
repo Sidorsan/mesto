@@ -6,3 +6,7 @@
   transform: translateY(-36px);
   align-self: flex-end;
 }
+
+.popup__close:hover {
+  opacity: 0.6;
+}
