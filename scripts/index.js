@@ -22,13 +22,13 @@ popupOpenButtonElement.addEventListener("click", openPopup);
 popupCloseButtonElelement.addEventListener("click", closePopup);
 
 
-
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
   // О том, как это делать, расскажем позже.
+
   // Получите значение полей jobInput и nameInput из свойства value
   // Выберите элементы, куда должны быть вставлены значения полей
   let profile1 = document.querySelector(".profile__title");
@@ -36,7 +36,7 @@ function formSubmitHandler(evt) {
   // Вставьте новые значения с помощью textContent
   profile1.textContent = nameInput.value;
   profile2.textContent = jobInput.value;
-  popupElement.classList.remove("popup_opened")
+  popupElement.classList.remove("popup_opened");
 }
 
 // Прикрепляем обработчик к форме:

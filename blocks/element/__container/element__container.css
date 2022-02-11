@@ -7,7 +7,7 @@
     margin: 0;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
     .element__container{
       margin: 47.25px 181px 0;
     }
