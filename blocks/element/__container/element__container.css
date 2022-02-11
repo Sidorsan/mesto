@@ -1,8 +1,14 @@
 .element__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-    gap: 20px;
+    gap: 20px 17px;
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
+
+@media screen and (min-width: 1024px) {
+    .element__container{
+      margin: 47.25px 181px 0;
+    }
+  }

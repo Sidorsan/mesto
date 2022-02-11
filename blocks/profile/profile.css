@@ -1,3 +1,12 @@
 .profile {
     margin: 42px 19px 0;
+
 }
+
+
+@media screen and (min-width: 1280px) {
+    .profile {
+      margin: 77.25px 200px 0;
+      display: flex;
+    }
+  }

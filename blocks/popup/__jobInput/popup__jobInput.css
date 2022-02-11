@@ -1,4 +1,4 @@
-.popup__field-2 {
+.popup__jobInput {
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
@@ -7,4 +7,5 @@
   color: #000000;
   min-width: 238px;
   margin: 30px auto 0;
+  border: none;
 }

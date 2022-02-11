@@ -9,7 +9,7 @@
   </head>
   <body class="page">
     <header class="header">
-      <img src="./images/Vector.png" alt="Логотип Mesto" class="header__logo" />
+      <img src="./images/Vector.svg" alt="Логотип Mesto" class="header__logo" />
       <hr class="header__line" />
     </header>
     <main>
@@ -18,7 +18,7 @@
         <div class="profile__info">
           <div class="profile__string">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
@@ -99,15 +99,15 @@
       <p class="footer__content">© 2020 Mesto Russia</p>
     </footer>
     <section class="popup">
-      <div class="popup__container">
-        <button class="popup__close"></button>
+      <form class="popup__container">
+        <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <p class="popup__field-1">Жак-Ив Кусто</p>
+        <input class="popup__nameInput" type="text" value=""></input>
         <hr class="popup__line-2" />
-        <p class="popup__field-2">Исследователь океана</p>
+        <input class="popup__jobInput" type="text" value=""></input>
         <hr class="popup__line-2" />
-        <button class="popup__submit-button"></button>
-      </div>
+        <button class="popup__submit-button" type="submit"></button>
+      </form>
     </section>
     <script src="./scripts/index.js"></script>
   </body>
