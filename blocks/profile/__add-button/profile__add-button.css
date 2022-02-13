@@ -7,7 +7,7 @@
   color: #ffffff;
   padding: 0;
   border-radius: 2px;
-  margin: 36px auto 0;
+  margin: 36px 0 0 19px;
   background: url(../../../images/Vector+.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -23,4 +23,5 @@
 }
 .profile__add-button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }

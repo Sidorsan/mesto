@@ -6,7 +6,7 @@
   background-position: center;
   background-size: contain;
   border-style: none;
-  transform: translateY(-180%);
+  top: -36px;
   align-self: flex-end;
   padding: 0;
   position: absolute;
@@ -16,10 +16,11 @@
   .popup__close {
     width: 32px;
     height: 32px;
-    transform: translateX(125%) translateY(-125%);
-  }
+    right: -36px;
+    top: -36px;
 }
 
 .popup__close:hover {
   opacity: 0.6;
+  cursor: pointer;
 }

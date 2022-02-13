@@ -1,6 +1,6 @@
 .element__item {
   width:282px;
-  height: 361px;
+  min-height: 361px;
   object-fit: cover;
   background: #ffffff;
   border-radius: 10px;
