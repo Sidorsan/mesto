@@ -1,5 +1,5 @@
-const popupElement = document.querySelector(".popup");
-const popupCloseButtonElelement = popupElement.querySelector(".popup__close");
+const popupElementUserAdd = document.querySelector(".popup_UserAdd");
+const popupCloseButtonElelement = popupElementUserAdd.querySelector(".popup__close");
 const popupOpenButtonElement = document.querySelector(".profile__edit-button");
 
 // Находим форму в DOM
@@ -11,13 +11,13 @@ let nameInputValue = document.querySelector(".profile__title");
 let jobInputValue = document.querySelector(".profile__subtitle");
 
 const openPopup = function () {
-  popupElement.classList.add("popup_opened");
+  popupElementUserAdd.classList.add("popup_opened");
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
 };
 
 const closePopup = function () {
-  popupElement.classList.remove("popup_opened");
+  popupElementUserAdd.classList.remove("popup_opened");
 };
 
 popupOpenButtonElement.addEventListener("click", openPopup);
