@@ -120,8 +120,9 @@ function renderItems(items) {
 }
 
 function handleSubmit() {
-  const title = inputCardTitle.value;
+  const name = inputCardTitle.value;
   const link = inputCardLink.value;
-
+ const item = [name, link];
   renderItem(item);
+  
 }
