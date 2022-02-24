@@ -119,10 +119,18 @@ function renderItems(items) {
         itemElement.remove();
 }
 
-function handleSubmit() {
-  const name = inputCardTitle.value;
-  const link = inputCardLink.value;
- const item = [name, link];
-  renderItem(item);
+function handleSubmit(evt) {
+  evt.preventDefault(); 
+  const itemElement = itemTemplateContent.cloneNode(true);
+  const itemImage = itemElement.querySelector(".element__image");
+  const elementTitle = itemElement.querySelector(".element__title");
+  elementTitle.textContent = inputCardTitle.value;
+  itemImage.src = inputCardLink.value;
+ 
+ setEventListeners(itemElement);
+ 
+ elementContainer.append(itemElement);
+ 
   
 }
+popupElementAddCard.addEventListener("submit", handleSubmit);
