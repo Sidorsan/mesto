@@ -112,14 +112,6 @@ function formSubmitHandlerAddUser(evt) {
   closePopupAddUser();
 }
 
-function handleBigPicture(event) {
-  const itemElement = event.target.closest(".element__item");
-  const itemImage = itemElement.querySelector(".element__image").src;
-  const itemTitle = itemElement.querySelector(".element__title").textContent;
-  elementImageBigPicture.src = itemImage;
-  elementTitleBigPicture.textContent = itemTitle;
-  openPopupBigPicture();
-}
 formElementAddUser.addEventListener("submit", formSubmitHandlerAddUser);
 
 function setEventListeners(itemElement) {
@@ -143,6 +135,7 @@ function renderItem(item) {
   setEventListeners(itemElement);
   elementTitle.textContent = item.name;
   itemImage.src = item.link;
+  itemImage.alt = item.name;
   elementContainer.prepend(itemElement);
 }
 
@@ -184,3 +177,13 @@ function handleSubmit(evt) {
   inputCardLink.value = "";
 }
 popupElementAddCard.addEventListener("submit", handleSubmit);
+
+function handleBigPicture(event) {
+  const itemElement = event.target.closest(".element__item");
+  const itemImage = itemElement.querySelector(".element__image").src;
+  const itemTitle = itemElement.querySelector(".element__title").textContent;
+  elementImageBigPicture.src = itemImage;
+  elementImageBigPicture.alt = itemTitle;
+  elementTitleBigPicture.textContent = itemTitle;
+  openPopupBigPicture();
+}
