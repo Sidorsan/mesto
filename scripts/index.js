@@ -40,9 +40,13 @@ const popupOpenButtonElementAddCard = document.querySelector(
 );
 
 const popupElementBigPicture = document.querySelector(".popup_big_picture");
-const popupCloseButtonElementBigPicture = popupElementBigPicture.querySelector(".popup__close");
-
-
+const popupCloseButtonElementBigPicture =
+  popupElementBigPicture.querySelector(".popup__close");
+let elementImageBigPicture =
+  popupElementBigPicture.querySelector(".popup__image");
+let elementTitleBigPicture = popupElementBigPicture.querySelector(
+  ".popup__title_big_picture"
+);
 
 let formElementAddUser = document.querySelector(".popup__form_add_user");
 let nameInput = formElementAddUser.querySelector(".popup__input_meaning_name");
@@ -67,28 +71,28 @@ function closePopap(item) {
   item.classList.remove("popup_opened");
 }
 
-const PopupAddUser = function () {
+function PopupAddUser() {
   openPopup(popupElementAddUser);
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
-};
-
-const closePopupAddUser = function () {
+}
+function closePopupAddUser() {
   closePopap(popupElementAddUser);
-};
+}
 
-
-const PopupAddCard = function () {
+function PopupAddCard() {
   openPopup(popupElementAddCard);
-};
-
-const closePopupAddCard = function () {
+}
+function closePopupAddCard() {
   closePopap(popupElementAddCard);
-};
+}
 
-const closePopapBigPicture = function () {
+function openPopupBigPicture() {
+  openPopup(popupElementBigPicture);
+}
+function closePopapBigPicture() {
   closePopap(popupElementBigPicture);
-};
+}
 
 popupOpenButtonElementAddUser.addEventListener("click", PopupAddUser);
 popupCloseButtonElelementAddUser.addEventListener("click", closePopupAddUser);
@@ -96,7 +100,10 @@ popupCloseButtonElelementAddUser.addEventListener("click", closePopupAddUser);
 popupOpenButtonElementAddCard.addEventListener("click", PopupAddCard);
 popupCloseButtonElelementAddCard.addEventListener("click", closePopupAddCard);
 
-popupCloseButtonElementBigPicture.addEventListener("click", closePopapBigPicture)
+popupCloseButtonElementBigPicture.addEventListener(
+  "click",
+  closePopapBigPicture
+);
 
 function formSubmitHandlerAddUser(evt) {
   evt.preventDefault();
@@ -105,6 +112,14 @@ function formSubmitHandlerAddUser(evt) {
   closePopupAddUser();
 }
 
+function handleBigPicture(event) {
+  const itemElement = event.target.closest(".element__item");
+  const itemImage = itemElement.querySelector(".element__image").src;
+  const itemTitle = itemElement.querySelector(".element__title").textContent;
+  elementImageBigPicture.src = itemImage;
+  elementTitleBigPicture.textContent = itemTitle;
+  openPopupBigPicture();
+}
 formElementAddUser.addEventListener("submit", formSubmitHandlerAddUser);
 
 function setEventListeners(itemElement) {
@@ -116,16 +131,16 @@ function setEventListeners(itemElement) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("element__like_active");
     });
-   // itemElement.querySelector(".element__image")
+  itemElement
+    .querySelector(".element__image")
+    .addEventListener("click", handleBigPicture);
 }
 
 function renderItem(item) {
   const itemElement = itemTemplateContent.cloneNode(true);
   const itemImage = itemElement.querySelector(".element__image");
   const elementTitle = itemElement.querySelector(".element__title");
-
   setEventListeners(itemElement);
-
   elementTitle.textContent = item.name;
   itemImage.src = item.link;
   elementContainer.prepend(itemElement);
@@ -155,17 +170,17 @@ function handleSubmit(evt) {
 
   const title = inputCardTitle.value;
   const link = inputCardLink.value;
-  if (title != '' && link != ''){
-  const newArray = [
-    {
-      name: title,
-      link: link,
-    }
-  ];
-  renderItems(newArray);
-} 
-  closePopupAddCard()
-  inputCardTitle.value = '';
-  inputCardLink.value = '';
+  if (title != "" && link != "") {
+    const newArray = [
+      {
+        name: title,
+        link: link,
+      },
+    ];
+    renderItems(newArray);
+  }
+  closePopupAddCard();
+  inputCardTitle.value = "";
+  inputCardLink.value = "";
 }
 popupElementAddCard.addEventListener("submit", handleSubmit);
