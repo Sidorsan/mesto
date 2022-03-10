@@ -10,6 +10,7 @@
   padding: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   height: 40px;
+  
 }
 
 @media screen and (min-width: 768px) {
@@ -21,3 +22,9 @@
 .popup__input:first-of-type {
   margin-top: 0;
 }
+
+.popup__input:not(:focus):invalid {
+  border-bottom: 1px solid #FF0000;
+  outline: none;
+}
+

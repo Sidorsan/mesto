@@ -34,16 +34,22 @@
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form popup__form_add_user">
+        <form class="popup__form popup__form_add_user" novalidate>
           <input
             class="popup__input popup__input_meaning_name"
             type="text"
             value=""
-          />
+            minlength="2"
+            id="sign-in-email"
+            name="input_meaning_name" required
+          /> 
+          <span class="popup__input-error" id="sign-in-email-error">ghbdtn</span>
           <input
             class="popup__input popup__input_meaning_job"
             type="text"
             value=""
+            minlength="2"
+            name="input_meaning_job" required
           />
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
@@ -53,18 +59,20 @@
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form popup__form_add_card">
+        <form class="popup__form popup__form_add_card" novalidate>
           <input
             class="popup__input popup__input_card_title"
             type="text"
             value=""
             placeholder="Название"
+            minlength="2"required
           />
           <input
             class="popup__input popup__input_card_link"
             type="text"
             value=""
             placeholder="Ссылка на картинку"
+            minlength="2" required
           />
           <button class="popup__submit-button" type="submit">Создать</button>
         </form>
