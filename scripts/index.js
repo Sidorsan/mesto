@@ -71,6 +71,7 @@ function openPopup(item) {
 
 function closePopap(item) {
   item.classList.remove("popup_opened");
+
 }
 
 function openPopupAddUser() {
@@ -78,8 +79,10 @@ function openPopupAddUser() {
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
 }
+
 function closePopupAddUser() {
   closePopap(popupElementAddUser);
+  
 }
 
 function openPopupAddCard() {
@@ -158,16 +161,6 @@ function handleDelete(event) {
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  /*
-  const itemElement = itemTemplateContent.cloneNode(true);
-  const itemImage = itemElement.querySelector(".element__image");
-  const elementTitle = itemElement.querySelector(".element__title");
-  elementTitle.textContent = inputCardTitle.value;
-  itemImage.src = inputCardLink.value;
-  setEventListeners(itemElement);
-  elementContainer.prepend(itemElement);
-  */
-
   const title = inputCardTitle.value;
   const link = inputCardLink.value;
   if (title != "" && link != "") {
@@ -182,6 +175,7 @@ function handleCardFormSubmit(evt) {
   closePopupAddCard();
   document.querySelector(".popup__form_add_card").reset();
 }
+
 popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
 
 function handleBigPicture(event) {

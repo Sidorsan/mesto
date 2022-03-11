@@ -7,7 +7,8 @@ const showError = (formElement, inputElement, errorMessage) => {
     const errorElement = getErrorElement(inputElement);
 
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input-error_active')
+    errorElement.classList.add('popup__input-error_active');
+    inputElement.classList.add('popup__input_type_error');
 };
 
 const hideError = (formElement, inputElement) => {
@@ -15,6 +16,7 @@ const hideError = (formElement, inputElement) => {
 
     errorElement.textContent = "";
     errorElement.classList.remove('popup__input-error_active')
+    inputElement.classList.remove('popup__input_type_error');
 };
 
 const checkValidity = (formElement, inputElement) => {
@@ -31,25 +33,26 @@ const checkValidity = (formElement, inputElement) => {
 
 const setEventListenersValidate = (formElement) => {
     const inputList = formElement.querySelectorAll('.popup__input');
-
-    inputList.forEach(inputElement => {
-        inputElement.addEventListener('input', (event) => {
-            console.log(event.target.name, event.target.value)
-
-            checkValidity(formElement, inputElement);
-        })
-    })
-}
+    const inputListIterator = (inputElement) => {
+        const handleInput = (event) => {
+           checkValidity(formElement, inputElement);
+        }
+        inputElement.addEventListener('input', handleInput);
+    };
+    inputList.forEach(inputListIterator);
+};
 
 const enableValidation = () => {
    const formList = document.querySelectorAll(".popup__form");
-  
-   formList.forEach((formElement) => {
-      formElement.addEventListener("submit", (event) => {
-          event.preventDefault();
-      });
-      setEventListenersValidate(formElement);
-  });
+   const formListIterator = (formElement) => {
+    const hendleFormSubmit = (event) => {
+    event.preventDefault();
+    };
+   
+      formElement.addEventListener("submit", hendleFormSubmit)
+      setEventListenersValidate(formElement); 
+  };
+  formList.forEach(formListIterator);
 };
 
 enableValidation();

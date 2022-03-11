@@ -8,5 +8,5 @@
     left: 0;
     transition: opacity 0.3s;
     z-index: 1;
-   
+   pointer-events: none;
 }
