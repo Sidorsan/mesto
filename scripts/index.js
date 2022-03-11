@@ -39,7 +39,7 @@ const popupOpenButtonElementAddCard = document.querySelector(
   ".profile__add-button"
 );
 
-const popupElementBigPicture = document.querySelector(".popup_big_picture");
+const popupElementBigPicture = document.querySelector(".popup__big_picture");
 const popupCloseButtonElementBigPicture =
   popupElementBigPicture.querySelector(".popup__close");
 const elementImageBigPicture =
@@ -69,7 +69,7 @@ function openPopup(item) {
   item.classList.add("popup_opened");
 }
 
-function closePopap(item) {
+function closePopup(item) {
   item.classList.remove("popup_opened");
 }
 
@@ -80,7 +80,7 @@ function openPopupAddUser() {
 }
 
 function closePopupAddUser() {
-  closePopap(popupElementAddUser);
+  closePopup(popupElementAddUser);
   
 }
 
@@ -89,7 +89,7 @@ function openPopupAddCard() {
 }
 
 function closePopupAddCard() {
-  closePopap(popupElementAddCard);
+  closePopup(popupElementAddCard);
   document.querySelector(".popup__form_add_card").reset();
   
 }
@@ -98,8 +98,8 @@ function closePopupAddCard() {
 function openPopupBigPicture() {
   openPopup(popupElementBigPicture);
 }
-function closePopapBigPicture() {
-  closePopap(popupElementBigPicture);
+function closePopupBigPicture() {
+  closePopup(popupElementBigPicture);
 }
 
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
@@ -111,7 +111,7 @@ popupCloseButtonElelementAddCard.addEventListener("click", closePopupAddCard);
 
 popupCloseButtonElementBigPicture.addEventListener(
   "click",
-  closePopapBigPicture
+  closePopupBigPicture
 );
 
 
@@ -168,7 +168,7 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const title = inputCardTitle.value;
   const link = inputCardLink.value;
-  if (title != "" && link != "") {
+ 
     const newArray = [
       {
         name: title,
@@ -176,7 +176,7 @@ function handleCardFormSubmit(evt) {
       },
     ];
     renderItems(newArray);
-  }
+  
   closePopupAddCard();
   document.querySelector(".popup__form_add_card").reset();
 }

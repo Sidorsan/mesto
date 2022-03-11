@@ -38,10 +38,10 @@ const inputElements = Array.from(inputList);
 
 if (hasInvalidInput) {
     submitButtonElement.classList.add("popup__submit-button_inactive");
-    submitButtonElement.setAttribute('disable', true);
+    submitButtonElement.setAttribute('disabled', true);
 } else {
     submitButtonElement.classList.remove("popup__submit-button_inactive");
-    submitButtonElement.removeAttribute('disable');
+   submitButtonElement.removeAttribute('disabled');
 }
 };
 
