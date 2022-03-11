@@ -71,7 +71,6 @@ function openPopup(item) {
 
 function closePopap(item) {
   item.classList.remove("popup_opened");
-
 }
 
 function openPopupAddUser() {
@@ -88,9 +87,13 @@ function closePopupAddUser() {
 function openPopupAddCard() {
   openPopup(popupElementAddCard);
 }
+
 function closePopupAddCard() {
   closePopap(popupElementAddCard);
+  document.querySelector(".popup__form_add_card").reset();
+  
 }
+
 
 function openPopupBigPicture() {
   openPopup(popupElementBigPicture);
@@ -102,6 +105,7 @@ function closePopapBigPicture() {
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 popupCloseButtonElelementAddUser.addEventListener("click", closePopupAddUser);
 
+
 popupOpenButtonElementAddCard.addEventListener("click", openPopupAddCard);
 popupCloseButtonElelementAddCard.addEventListener("click", closePopupAddCard);
 
@@ -109,6 +113,7 @@ popupCloseButtonElementBigPicture.addEventListener(
   "click",
   closePopapBigPicture
 );
+
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
