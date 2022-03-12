@@ -37,7 +37,7 @@ const popupOpenButtonElementAddCard = document.querySelector(
   ".profile__add-button"
 );
 
-const popupElementBigPicture = document.querySelector(".popup__big_picture");
+const popupElementBigPicture = document.querySelector(".popup_big_picture");
 //const popupCloseButtonElementBigPicture = popupElementBigPicture.querySelector(".popup__close");
 const elementImageBigPicture =
   popupElementBigPicture.querySelector(".popup__image");
@@ -45,7 +45,7 @@ const elementTitleBigPicture = popupElementBigPicture.querySelector(
   ".popup__title_big_picture"
 );
 
-const formElementAddUser = document.querySelector(".popup__form_add_user");
+const formElementAddUser = document.querySelector(".form_add_user");
 const nameInput = formElementAddUser.querySelector(
   ".popup__input_meaning_name"
 );
@@ -86,12 +86,12 @@ function closePopupAddUser() {
 function openPopupAddCard() {
   openPopup(popupElementAddCard);
   setEventListenersPopup(popupElementAddCard);
-  document.querySelector(".popup__form_add_card").reset();
+  document.querySelector(".form_add_card").reset();
 }
 /*
 function closePopupAddCard() {
   closePopup(popupElementAddCard);
- document.querySelector(".popup__form_add_card").reset();
+ document.querySelector(".form_add_card").reset();
   
 }
 */
@@ -205,7 +205,7 @@ function handleCardFormSubmit(evt) {
 
   // closePopupAddCard();
   handleOrSubmitPopupClose(evt);
-  document.querySelector(".popup__form_add_card").reset();
+  document.querySelector(".form_add_card").reset();
 }
 
 popupElementAddCard.addEventListener("submit", handleCardFormSubmit);

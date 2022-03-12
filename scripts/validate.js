@@ -1,6 +1,6 @@
 const getErrorElement = (inputElement) => {
   return inputElement
-    .closest(".popap__form_section")
+    .closest(".popap__section")
     .querySelector(".popup__input-error");
 };
 
@@ -66,7 +66,7 @@ const setEventListenersValidate = (formElement) => {
  };
 
 const enableValidation = () => {
-  const formList = document.querySelectorAll(".popup__form");
+  const formList = document.querySelectorAll(".form");
   const formListIterator = (formElement) => {
     const hendleFormSubmit = (event) => {
       event.preventDefault();
