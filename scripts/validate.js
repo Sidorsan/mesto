@@ -1,6 +1,6 @@
 const getErrorElement = (inputElement) => {
   return inputElement
-    .closest(".popap__section")
+    .closest(".form__section")
     .querySelector(".popup__input-error");
 };
 

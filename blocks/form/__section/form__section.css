@@ -1,8 +1,8 @@
-.popap__section {
+.form__section {
   margin-top: 17px;
   position: relative;
 }
 
-.popap__section:first-of-type {
+.form__section:first-of-type {
   margin-top: 0;
 }
