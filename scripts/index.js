@@ -72,7 +72,6 @@ function closePopup(item) {
 
 function openPopupAddUser() {
   openPopup(popupElementAddUser);
-
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
   setEventListenersPopup(popupElementAddUser);
