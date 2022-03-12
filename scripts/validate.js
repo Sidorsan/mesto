@@ -22,7 +22,7 @@ const hideError = (formElement, inputElement) => {
 
 const checkValidity = (formElement, inputElement) => {
   const isInputNotValid = !inputElement.validity.valid;
-
+  
   if (isInputNotValid) {
     const errorMessage = inputElement.validationMessage;
     showError(formElement, inputElement, errorMessage);
@@ -34,6 +34,7 @@ const checkValidity = (formElement, inputElement) => {
 const toggleButtonState = (inputList, submitButtonElement) => {
   const inputElements = Array.from(inputList);
   const hasInvalidInput = inputElements.some((inputElement) => {
+    //console.log (inputElement.validity)
     return !inputElement.validity.valid;
   });
 
