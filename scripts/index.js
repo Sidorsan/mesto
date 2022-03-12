@@ -46,9 +46,7 @@ const elementTitleBigPicture = popupElementBigPicture.querySelector(
 );
 
 const formElementAddUser = document.querySelector(".form_add_user");
-const nameInput = formElementAddUser.querySelector(
-  ".form__input_meaning_name"
-);
+const nameInput = formElementAddUser.querySelector(".form__input_meaning_name");
 const jobInput = formElementAddUser.querySelector(".form__input_meaning_job");
 const nameInputValue = document.querySelector(".profile__title");
 const jobInputValue = document.querySelector(".profile__subtitle");
@@ -74,7 +72,7 @@ function openPopupAddUser() {
   openPopup(popupElementAddUser);
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
-  setEventListenersPopup(popupElementAddUser);
+  setEventListenersPopupClose(popupElementAddUser);
 }
 /*
 function closePopupAddUser() {
@@ -85,7 +83,7 @@ function closePopupAddUser() {
 
 function openPopupAddCard() {
   openPopup(popupElementAddCard);
-  setEventListenersPopup(popupElementAddCard);
+  setEventListenersPopupClose(popupElementAddCard);
   document.querySelector(".form_add_card").reset();
 }
 /*
@@ -98,7 +96,7 @@ function closePopupAddCard() {
 
 function openPopupBigPicture() {
   openPopup(popupElementBigPicture);
-  setEventListenersPopup(popupElementBigPicture);
+  setEventListenersPopupClose(popupElementBigPicture);
 }
 /*
 function closePopupBigPicture() {
@@ -114,25 +112,25 @@ popupOpenButtonElementAddCard.addEventListener("click", openPopupAddCard);
 
 //popupCloseButtonElementBigPicture.addEventListener(  "click",  closePopupBigPicture);
 
-
-
-function setEventListenersPopup(itemElement) {
+function setEventListenersPopupClose(itemElement) {
   const closePopupByClickOnOverlay = function (event) {
     if (event.target !== event.currentTarget) {
       return;
     }
     closePopup(itemElement);
   };
-
   itemElement.addEventListener("click", closePopupByClickOnOverlay);
 
-  document.addEventListener("keydown", function (evt) {
+  const closePopupKeyEscape = document.querySelector(".page");
+  closePopupKeyEscape.addEventListener("keydown", function (evt) {
     if (evt.key === "Escape") {
       closePopup(itemElement);
+      evt.target.removeEventListener("keydown", closePopupKeyEscape);
     }
   });
-  const popupCloseButton = itemElement.querySelector(".popup__close");
-  popupCloseButton.addEventListener("click", handleOrSubmitPopupClose);
+
+  const closePopupButton = itemElement.querySelector(".popup__close");
+  closePopupButton.addEventListener("click", handleOrSubmitPopupClose);
 }
 
 function handleOrSubmitPopupClose(event) {
