@@ -48,9 +48,12 @@ if (hasInvalidInput) {
 
 
 
+
+
 const setEventListenersValidate = (formElement) => {
     const inputList = formElement.querySelectorAll('.popup__input');
-    const submitButtonElement = formElement.querySelector('.popup__submit-button')
+    const submitButtonElement = formElement.querySelector('.popup__submit-button');
+    
     const inputListIterator = (inputElement) => {
         const handleInput = (event) => {
            checkValidity(formElement, inputElement);
@@ -58,7 +61,9 @@ const setEventListenersValidate = (formElement) => {
         }
         inputElement.addEventListener('input', handleInput);
     };
+   
     toggleButtonState(inputList, submitButtonElement);
+    
     inputList.forEach(inputListIterator);
 };
 
