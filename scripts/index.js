@@ -47,19 +47,19 @@ const elementTitleBigPicture = popupElementBigPicture.querySelector(
 
 const formElementAddUser = document.querySelector(".form_add_user");
 const nameInput = formElementAddUser.querySelector(
-  ".popup__input_meaning_name"
+  ".form__input_meaning_name"
 );
-const jobInput = formElementAddUser.querySelector(".popup__input_meaning_job");
+const jobInput = formElementAddUser.querySelector(".form__input_meaning_job");
 const nameInputValue = document.querySelector(".profile__title");
 const jobInputValue = document.querySelector(".profile__subtitle");
 
 const itemTemplateContent = document.querySelector(".item-template").content;
 const elementContainer = document.querySelector(".element__container"); // listElement
 const inputCardTitle = popupElementAddCard.querySelector(
-  ".popup__input_card_title"
+  ".form__input_card_title"
 );
 const inputCardLink = popupElementAddCard.querySelector(
-  ".popup__input_card_link"
+  ".form__input_card_link"
 );
 
 function openPopup(item) {
