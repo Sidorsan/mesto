@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 const popupElementAddUser = document.querySelector(".popup_add_user");
 //const popupCloseButtonElelementAddUser = popupElementAddUser.querySelector(".popup__close");
 const popupOpenButtonElementAddUser = document.querySelector(
@@ -73,7 +46,11 @@ function openPopupAddUser() {
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
   setEventListenersPopupClose(popupElementAddUser);
+  //setSubmitButtonState(popupElementAddUser)
+  enableValidation();
 }
+
+
 /*
 function closePopupAddUser() {
   closePopup(popupElementAddUser);
@@ -85,6 +62,7 @@ function openPopupAddCard() {
   openPopup(popupElementAddCard);
   setEventListenersPopupClose(popupElementAddCard);
   document.querySelector(".form_add_card").reset();
+  
 }
 /*
 function closePopupAddCard() {
@@ -204,6 +182,10 @@ function handleCardFormSubmit(evt) {
   // closePopupAddCard();
   handleOrSubmitPopupClose(evt);
   document.querySelector(".form_add_card").reset();
+  
+  const submitButtonAddCard = popupElementAddCard.querySelector(".popup__submit-button");
+  submitButtonAddCard.classList.add("popup__submit-button_inactive");
+  submitButtonAddCard.setAttribute("disabled", true);
 }
 
 popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
