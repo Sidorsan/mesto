@@ -45,6 +45,7 @@ function openPopupAddUser() {
   jobInput.value = jobInputValue.textContent;
   //setEventListenersPopupClose(popupElementAddUser);
   enableValidation();
+  //closeEscape()
 }
 
 
@@ -73,26 +74,20 @@ function resetForm(item) {
   };
  
 
-  const inputList1 = document.querySelectorAll(".popup"); 
-  const popups = Array.from(inputList1);
-  popups.forEach((inputList1) => { 
-    inputList1.addEventListener('click', (evt) => { 
+  const popupList = document.querySelectorAll(".popup"); 
+  const popups = Array.from(popupList);
+  popups.forEach((popupList) => { 
+    popupList.addEventListener('click', (evt) => { 
         // закрытие попапов по клику на оверлей 
         if (evt.target.classList.contains('popup_opened')) { 
-            closePopup(inputList1) 
+            closePopup(popupList) 
         } 
         // закрытие попапов на клику на крестик 
         if (evt.target.classList.contains('popup__close')) { 
-            closePopup(inputList1)
+            closePopup(popupList)
         } 
     }) 
 })  
-
-
-
-
-
-
 
 
 
@@ -117,8 +112,33 @@ function setEventListenersPopupClose(itemElement) {
   const closePopupButton = itemElement.querySelector(".popup__close");
   closePopupButton.addEventListener("click", handleOrSubmitPopupClose);
 }
+
+
+function closePopupKeyEscape(itemElement) {
+  const closePopupKeyEscape = document.querySelector(".page");
+  closePopupKeyEscape.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      closePopup(itemElement);
+      evt.target.removeEventListener("keydown", closePopupKeyEscape);
+    }
+  });
+}
 */
-function handleOrSubmitPopupClose(event) {
+
+function closePopupKeyEscape(evt) {
+  if (evt.key === "Escape") {
+    closePopup(popupElementAddUser);
+    evt.target.removeEventListener("keydown", closePopupKeyEscape);
+}
+}
+ 
+    const closeKeyEscape = document.querySelector(".page");
+    closeKeyEscape.addEventListener("keydown", closePopupKeyEscape)
+  
+
+
+
+function submitPopupClose(event) {
   const itemElement = event.target.closest(".popup");
   closePopup(itemElement);
 }
@@ -127,7 +147,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   nameInputValue.textContent = nameInput.value;
   jobInputValue.textContent = jobInput.value;
-  handleOrSubmitPopupClose(evt);
+  submitPopupClose(evt);
 }
 
 formElementAddUser.addEventListener("submit", handleProfileFormSubmit);
@@ -184,7 +204,7 @@ function handleCardFormSubmit(evt) {
     },
   ];
   renderItems(newArray);
-  handleOrSubmitPopupClose(evt);
+  submitPopupClose(evt);
   resetForm(popupElementAddCard);
   
   const submitButtonAddCard = popupElementAddCard.querySelector(".popup__submit-button");
