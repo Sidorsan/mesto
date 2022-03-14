@@ -56,9 +56,7 @@ function openPopupAddUser() {
   openPopup(popupElementAddUser);
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
-  function resetFormAddUser () {
-    
-  }
+  enableValidation();
 }
 
 function openPopupAddCard() {
