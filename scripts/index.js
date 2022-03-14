@@ -77,6 +77,8 @@ function openPopupAddUser() {
 function openPopupAddCard() {
   openPopup(popupElementAddCard);
   resetForm(popupElementAddCard);
+
+  
 }
 
 function openPopupBigPicture() {
