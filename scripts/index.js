@@ -56,7 +56,22 @@ function openPopupAddUser() {
   openPopup(popupElementAddUser);
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
-  enableValidation();
+
+  const submitButtonElement = popupElementAddUser.querySelector(
+    ".popup__submit-button"
+  );
+  submitButtonElement.classList.remove("popup__submit-button_inactive");
+  submitButtonElement.removeAttribute("disabled");
+  const errorElement =
+    popupElementAddUser.querySelectorAll(".form__input-error");
+  errorElement.forEach((item) => {
+    item.classList.remove("form__input-error_active");
+  });
+
+  const inputElement = popupElementAddUser.querySelectorAll(".form__input");
+  inputElement.forEach((item) => {
+    item.classList.remove("form__input_type_error");
+  });
 }
 
 function openPopupAddCard() {
