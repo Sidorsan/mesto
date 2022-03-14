@@ -35,29 +35,30 @@ const keyEscapeListener = document.querySelector(".page");
 
 function openPopup(item) {
   item.classList.add("popup_opened");
-  function closePopupKeyEscape(evt) {
-    if (evt.key === "Escape") {
-      closePopup(item);
-      keyEscapeListener.removeEventListener("keydown", closePopupKeyEscape);
-    }
-  }
-  keyEscapeListener.addEventListener("keydown", closePopupKeyEscape);
+  keyEscapeListener.addEventListener("keydown", closeKeyEscape);
 }
 
-
-
-
+function closeKeyEscape(evt) {
+  if (evt.key === "Escape") {
+    const foundPopup = popups.find(function (popupList) {
+      return popupList.classList.contains("popup_opened");
+    });
+    closePopup(foundPopup);
+  }
+}
 
 function closePopup(item) {
   item.classList.remove("popup_opened");
-  
+  keyEscapeListener.removeEventListener("keydown", closeKeyEscape);
 }
 
 function openPopupAddUser() {
   openPopup(popupElementAddUser);
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
-  enableValidation();
+  function resetFormAddUser () {
+    
+  }
 }
 
 function openPopupAddCard() {

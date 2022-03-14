@@ -22,7 +22,7 @@ const hideError = (formElement, inputElement) => {
 
 const checkValidity = (formElement, inputElement) => {
   const isInputNotValid = !inputElement.validity.valid;
-  
+
   if (isInputNotValid) {
     const errorMessage = inputElement.validationMessage;
     showError(formElement, inputElement, errorMessage);
@@ -58,10 +58,10 @@ const setEventListenersValidate = (formElement) => {
       checkValidity(formElement, inputElement);
       toggleButtonState(inputList, submitButtonElement);
     };
-    checkValidity(formElement, inputElement);
+    //checkValidity(formElement, inputElement);
     inputElement.addEventListener("input", handleInput);
   };
-  
+
   toggleButtonState(inputList, submitButtonElement);
   inputList.forEach(inputListIterator);
 };
@@ -69,11 +69,6 @@ const setEventListenersValidate = (formElement) => {
 const enableValidation = () => {
   const formList = document.querySelectorAll(".form");
   const formListIterator = (formElement) => {
-    const hendleFormSubmit = (event) => {
-      event.preventDefault();
-    };
-
-    formElement.addEventListener("submit", hendleFormSubmit);
     setEventListenersValidate(formElement);
   };
 
