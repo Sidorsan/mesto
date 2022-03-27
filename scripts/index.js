@@ -1,3 +1,6 @@
+//import renderItems from "./card.js";
+
+
 const popupElementAddUser = document.querySelector(".popup_add_user");
 const popupOpenButtonElementAddUser = document.querySelector(
   ".profile__edit-button"
@@ -9,12 +12,12 @@ const popupOpenButtonElementAddCard = document.querySelector(
   ".profile__add-button"
 );
 
-const popupElementBigPicture = document.querySelector(".popup_big_picture");
-const elementImageBigPicture =
-  popupElementBigPicture.querySelector(".popup__image");
-const elementTitleBigPicture = popupElementBigPicture.querySelector(
-  ".popup__title_big_picture"
-);
+// const popupElementBigPicture = document.querySelector(".popup_big_picture");
+// const elementImageBigPicture =
+//   popupElementBigPicture.querySelector(".popup__image");
+// const elementTitleBigPicture = popupElementBigPicture.querySelector(
+//   ".popup__title_big_picture"
+// );
 
 const formElementAddUser = document.querySelector(".form_add_user");
 const nameInput = formElementAddUser.querySelector(".form__input_meaning_name");
@@ -22,8 +25,8 @@ const jobInput = formElementAddUser.querySelector(".form__input_meaning_job");
 const nameInputValue = document.querySelector(".profile__title");
 const jobInputValue = document.querySelector(".profile__subtitle");
 
-const itemTemplateContent = document.querySelector(".item-template").content;
-const elementContainer = document.querySelector(".element__container");
+// const itemTemplateContent = document.querySelector(".item-template").content;
+//const elementContainer = document.querySelector(".element__container");
 const inputCardTitle = popupElementAddCard.querySelector(
   ".form__input_card_title"
 );
@@ -33,12 +36,12 @@ const inputCardLink = popupElementAddCard.querySelector(
 
 const keyEscapeListener = document.querySelector(".page");
 
-function openPopup(item) {
+export function openPopup(item) {
   item.classList.add("popup_opened");
   keyEscapeListener.addEventListener("keydown", closeKeyEscape);
 }
 
-function closeKeyEscape(evt) {
+ function closeKeyEscape(evt) {
   if (evt.key === "Escape") {
     const foundPopup = popups.find(function (popupList) {
       return popupList.classList.contains("popup_opened");
@@ -77,13 +80,11 @@ function openPopupAddUser() {
 function openPopupAddCard() {
   openPopup(popupElementAddCard);
   resetForm(popupElementAddCard);
-
-  
 }
 
-function openPopupBigPicture() {
-  openPopup(popupElementBigPicture);
-}
+// function openPopupBigPicture() {
+//   openPopup(popupElementBigPicture);
+// }
 
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
@@ -121,34 +122,61 @@ function handleProfileFormSubmit(evt) {
 
 formElementAddUser.addEventListener("submit", handleProfileFormSubmit);
 
-function setEventListenersCardElement(itemElement) {
-  itemElement
-    .querySelector(".element__delete")
-    .addEventListener("click", handleDelete);
-  itemElement
-    .querySelector(".element__like")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__like_active");
-    });
-  itemElement
-    .querySelector(".element__image")
-    .addEventListener("click", handleBigPicture);
-}
 
-function createCard(item) {
-  const cardElement = itemTemplateContent.cloneNode(true);
-  const itemImage = cardElement.querySelector(".element__image");
-  const elementTitle = cardElement.querySelector(".element__title");
-  setEventListenersCardElement(cardElement);
-  elementTitle.textContent = item.name;
-  itemImage.src = item.link;
-  itemImage.alt = item.name;
-  return cardElement;
-}
 
+// function setEventListenersCardElement(itemElement) {
+//   itemElement
+//     .querySelector(".element__delete")
+//     .addEventListener("click", handleDelete);
+//   itemElement
+//     .querySelector(".element__like")
+//     .addEventListener("click", function (evt) {
+//       evt.target.classList.toggle("element__like_active");
+//     });
+//   itemElement
+//     .querySelector(".element__image")
+//     .addEventListener("click", handleBigPicture);
+// }
+
+// function createCard(item) {
+//   const cardElement = itemTemplateContent.cloneNode(true);
+//   const itemImage = cardElement.querySelector(".element__image");
+//   const elementTitle = cardElement.querySelector(".element__title");
+//   setEventListenersCardElement(cardElement);
+//   elementTitle.textContent = item.name;
+//   itemImage.src = item.link;
+//   itemImage.alt = item.name;
+//   return cardElement;
+// }
+
+// function renderItem(item) {
+//   const itemElement = createCard(item);
+//   elementContainer.prepend(itemElement);
+// }
+
+// function renderItems(items) {
+//   items.forEach(renderItem);
+// }
+// renderItems(initialCards);
+
+// function handleDelete(event) {
+//   const itemElement = event.target.closest(".element__item");
+//   itemElement.remove();
+// }
+
+
+
+
+
+
+import {Card, initialCards} from "./card.js"
+
+
+ 
 function renderItem(item) {
-  const itemElement = createCard(item);
-  elementContainer.prepend(itemElement);
+  const card = new Card(item, ".item-template");
+  const cardElement = card.createCard();
+  document.querySelector(".element__container").prepend(cardElement);
 }
 
 function renderItems(items) {
@@ -156,10 +184,8 @@ function renderItems(items) {
 }
 renderItems(initialCards);
 
-function handleDelete(event) {
-  const itemElement = event.target.closest(".element__item");
-  itemElement.remove();
-}
+
+
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
@@ -172,6 +198,7 @@ function handleCardFormSubmit(evt) {
       link: link,
     },
   ];
+
   renderItems(newArray);
   submitPopupClose(evt);
   resetForm(popupElementAddCard);
@@ -185,11 +212,11 @@ function handleCardFormSubmit(evt) {
 
 popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
 
-function handleBigPicture(event) {
-  const itemImage = event.target.src;
-  const itemTitle = event.target.alt;
-  elementImageBigPicture.src = itemImage;
-  elementImageBigPicture.alt = itemTitle;
-  elementTitleBigPicture.textContent = itemTitle;
-  openPopupBigPicture();
-}
+// function handleBigPicture(event) {
+//   const itemImage = event.target.src;
+//   const itemTitle = event.target.alt;
+//   elementImageBigPicture.src = itemImage;
+//   elementImageBigPicture.alt = itemTitle;
+//   elementTitleBigPicture.textContent = itemTitle;
+//   openPopupBigPicture();
+// }
