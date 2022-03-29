@@ -1,7 +1,5 @@
 const getErrorElement = (inputElement) => {
-  return inputElement
-    .closest(".form__section")
-    .querySelector(".form__input-error");
+  return inputElement.closest(".form__section").querySelector(".form__input-error");
 };
 
 const showError = (formElement, inputElement, errorMessage) => {

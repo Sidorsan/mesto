@@ -11,7 +11,7 @@ class FormValidator {
   }
 
   _showError() {
-    this._errorElement = _getErrorElement();
+    this._errorElement = this._getErrorElement();
     this._errorElement.textContent = errorMessage;
     this._errorElement.classList.add("form__input-error_active");
     this._inputElement.classList.add("form__input_type_error");
