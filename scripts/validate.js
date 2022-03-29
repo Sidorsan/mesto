@@ -1,21 +1,23 @@
 const getErrorElement = (inputElement) => {
-  return inputElement.closest(".form__section").querySelector(".form__input-error");
+  return inputElement
+    .closest(".form__section")
+    .querySelector(".form__input-error");
 };
 
 const showError = (formElement, inputElement, errorMessage) => {
   const errorElement = getErrorElement(inputElement);
 
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
-  inputElement.classList.add("form__input_type_error");
+  errorElement.classList.add(enableValidation.errorClass);
+  inputElement.classList.add(enableValidation.inputErrorClass);
 };
 
 const hideError = (formElement, inputElement) => {
   const errorElement = getErrorElement(inputElement);
 
   errorElement.textContent = "";
-  errorElement.classList.remove("form__input-error_active");
-  inputElement.classList.remove("form__input_type_error");
+  errorElement.classList.remove(enableValidation.errorClass);
+  inputElement.classList.remove(enableValidation.inputErrorClass);
 };
 
 const checkValidity = (formElement, inputElement) => {
@@ -32,23 +34,23 @@ const checkValidity = (formElement, inputElement) => {
 const toggleButtonState = (inputList, submitButtonElement) => {
   const inputElements = Array.from(inputList);
   const hasInvalidInput = inputElements.some((inputElement) => {
-    //console.log (inputElement.validity)
     return !inputElement.validity.valid;
   });
 
   if (hasInvalidInput) {
-    submitButtonElement.classList.add("popup__submit-button_inactive");
+    submitButtonElement.classList.add(enableValidation.inactiveButtonClass);
     submitButtonElement.setAttribute("disabled", true);
   } else {
-    submitButtonElement.classList.remove("popup__submit-button_inactive");
+    submitButtonElement.classList.remove(enableValidation.inactiveButtonClass);
     submitButtonElement.removeAttribute("disabled");
   }
 };
 
 const setEventListenersValidate = (formElement) => {
-  const inputList = formElement.querySelectorAll(".form__input");
+  const inputList = formElement.querySelectorAll(enableValidation.inputSelector);
+
   const submitButtonElement = formElement.querySelector(
-    ".popup__submit-button"
+    enableValidation.submitButtonSelector
   );
 
   const inputListIterator = (inputElement) => {
@@ -64,8 +66,24 @@ const setEventListenersValidate = (formElement) => {
   inputList.forEach(inputListIterator);
 };
 
-const enableValidation = () => {
-  const formList = document.querySelectorAll(".form");
+const enableValidation = ({
+  formSelector,
+  inputSelector,
+  submitButtonSelector,
+  inactiveButtonClass,
+  inputErrorClass,
+  errorClass,
+}) => {
+  enableValidation.formSelector = formSelector;
+  enableValidation.inputSelector = inputSelector;
+  enableValidation.submitButtonSelector = submitButtonSelector;
+  enableValidation.inactiveButtonClass = inactiveButtonClass;
+  enableValidation.inputErrorClass = inputErrorClass;
+  enableValidation.errorClass = errorClass;
+
+
+  const formList = document.querySelectorAll(enableValidation.formSelector);
+
   const formListIterator = (formElement) => {
     setEventListenersValidate(formElement);
   };
@@ -73,4 +91,13 @@ const enableValidation = () => {
   formList.forEach(formListIterator);
 };
 
-enableValidation();
+
+enableValidation({
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+});
+
