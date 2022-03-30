@@ -1,4 +1,4 @@
-import { openPopup } from "./index.js";
+
 export const initialCards = [
   {
     name: "Архыз",
@@ -26,13 +26,14 @@ export const initialCards = [
   },
 ];
 
-const popupElementBigPicture = document.querySelector(".popup_big_picture");
+
 
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const itemTemplateContent = document
@@ -43,10 +44,11 @@ export class Card {
   }
   createCard() {
     this._cardElement = this._getTemplate();
+    this._cardImage = this._cardElement.querySelector(".element__image");
     this._setEventListeners();
-    this._cardElement.querySelector(".element__image").src = this._link;
+    this._cardImage.src = this._link;
     this._cardElement.querySelector(".element__title").textContent = this._name;
-    this._cardElement.querySelector(".element__title").alt = this._name;
+    this._cardElement.querySelector(".element__image").alt = this._name;
 
     return this._cardElement;
   }
@@ -54,22 +56,6 @@ export class Card {
   _handleDelete(evt) {
     const itemElement = evt.target.closest(".element__item");
     itemElement.remove();
-  }
-
-  _handleBigPicture() {
-    const elementImageBigPicture =
-      popupElementBigPicture.querySelector(".popup__image");
-    const elementTitleBigPicture = popupElementBigPicture.querySelector(
-      ".popup__title_big_picture"
-    );
-    elementImageBigPicture.src = this._link;
-    elementImageBigPicture.alt = this._name;
-    elementTitleBigPicture.textContent = this._name;
-    this._openPopupBigPicture();
-  }
-
-  _openPopupBigPicture() {
-    openPopup(popupElementBigPicture);
   }
 
   _setEventListeners() {
@@ -83,10 +69,10 @@ export class Card {
         evt.target.classList.toggle("element__like_active");
       });
 
-    this._cardElement
-      .querySelector(".element__image")
+      this._cardImage
       .addEventListener("click", () => {
-        this._handleBigPicture();
+       // this._handleBigPicture();
+       this._handleCardClick(this._name, this._link)
       });
   }
 }

@@ -22,6 +22,11 @@ const inputCardLink = popupElementAddCard.querySelector(
 
 const keyEscapeListener = document.querySelector(".page");
 
+const popupElementBigPicture = document.querySelector(".popup_big_picture");
+const elementImageBigPicture = popupElementBigPicture.querySelector(".popup__image");
+    const elementTitleBigPicture = popupElementBigPicture.querySelector(  ".popup__title_big_picture"
+    );
+
 export function openPopup(item) {
   item.classList.add("popup_opened");
   keyEscapeListener.addEventListener("keydown", closeKeyEscape);
@@ -100,12 +105,19 @@ function handleProfileFormSubmit(evt) {
 }
 formElementAddUser.addEventListener("submit", handleProfileFormSubmit);
 
+function handleCardClick(name, link) {
+    elementImageBigPicture.src = link;
+    elementImageBigPicture.alt = name;
+    elementTitleBigPicture.textContent =name;
+  openPopup(popupElementBigPicture);
+}
+
 
 
 import {Card, initialCards} from "./card.js"
 
 function renderItem(item) {
-  const card = new Card(item, ".item-template");
+  const card = new Card(item, ".item-template", handleCardClick);
   const cardElement = card.createCard();
   document.querySelector(".element__container").prepend(cardElement);
 }
@@ -138,6 +150,10 @@ function handleCardFormSubmit(evt) {
   submitButtonAddCard.setAttribute("disabled", true);
 }
 popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
+
+
+
+
 
 
 import {FormValidator} from "./formValidator.js"
