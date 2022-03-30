@@ -1,3 +1,6 @@
+import {Card, initialCards} from "./card.js"
+import {FormValidator} from "./formValidator.js"
+
 const popupElementAddUser = document.querySelector(".popup_add_user");
 const popupOpenButtonElementAddUser = document.querySelector(
   ".profile__edit-button"
@@ -66,9 +69,13 @@ function openPopupAddUser() {
   });
 }
 
+
+
 function openPopupAddCard() {
   openPopup(popupElementAddCard);
   resetForm(popupElementAddCard);
+  
+
 }
 
 
@@ -114,7 +121,7 @@ function handleCardClick(name, link) {
 
 
 
-import {Card, initialCards} from "./card.js"
+
 
 function renderItem(item) {
   const card = new Card(item, ".item-template", handleCardClick);
@@ -156,7 +163,7 @@ popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
 
 
 
-import {FormValidator} from "./formValidator.js"
+
 function startValidation() {
   const validtionClass = {
     formSelector: ".form",
@@ -165,9 +172,11 @@ function startValidation() {
     inactiveButtonClass: "popup__submit-button_inactive",
     inputErrorClass: "form__input_type_error",
     errorClass: "form__input-error_active",
+    formSection: ".form__section"
   };
   const formValidator = new FormValidator(validtionClass);
   const startEnableValidation = formValidator.enableValidation();
+  
   return startEnableValidation;
 }
 startValidation();

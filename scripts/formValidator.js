@@ -6,11 +6,12 @@ export class FormValidator {
     this._inactiveButtonClass = validtionClass.inactiveButtonClass;
     this._inputErrorClass = validtionClass.inputErrorClass;
     this._errorClass = validtionClass.errorClass;
+    this._formSection = validtionClass.formSection
   }
 
   _getErrorElement(inputElement) {
     return inputElement
-      .closest(".form__section")
+      .closest(this._formSection)
       .querySelector(".form__input-error");
   }
 
@@ -37,6 +38,7 @@ export class FormValidator {
       this._hideError(inputElement);
     }
   }
+  
 
   _toggleButtonState(inputList, submitButtonElement) {
     const inputElements = Array.from(inputList);
@@ -51,6 +53,16 @@ export class FormValidator {
       submitButtonElement.removeAttribute("disabled");
     }
   }
+
+  resetValidation() {
+    this._toggleButtonState(); 
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement) 
+      
+    });
+   
+  }
+
 
   _setEventListenersValidate(formElement) {
     const inputList = formElement.querySelectorAll(this._inputSelector);
