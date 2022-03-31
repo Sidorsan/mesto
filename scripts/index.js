@@ -160,20 +160,20 @@ popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
 
 
 
-
+const validtionClass = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+  formSection: ".form__section"
+};
 
 
 
 function startValidation() {
-  const validtionClass = {
-    formSelector: ".form",
-    inputSelector: ".form__input",
-    submitButtonSelector: ".popup__submit-button",
-    inactiveButtonClass: "popup__submit-button_inactive",
-    inputErrorClass: "form__input_type_error",
-    errorClass: "form__input-error_active",
-    formSection: ".form__section"
-  };
+
   const formValidator = new FormValidator(validtionClass);
   const startEnableValidation = formValidator.enableValidation();
   
