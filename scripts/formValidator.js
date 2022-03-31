@@ -6,9 +6,10 @@ export class FormValidator {
     this._inactiveButtonClass = validtionClass.inactiveButtonClass;
     this._inputErrorClass = validtionClass.inputErrorClass;
     this._errorClass = validtionClass.errorClass;
-    this._formSection = validtionClass.formSection
-  }
+    this._formSection = validtionClass.formSection;
 
+    this._formlist = document.querySelectorAll(this._formSelector);
+  }
   _getErrorElement(inputElement) {
     return inputElement
       .closest(this._formSection)
@@ -38,7 +39,6 @@ export class FormValidator {
       this._hideError(inputElement);
     }
   }
-  
 
   _toggleButtonState(inputList, submitButtonElement) {
     const inputElements = Array.from(inputList);
@@ -55,36 +55,31 @@ export class FormValidator {
   }
 
   resetValidation() {
-    this._toggleButtonState(); 
+    this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
-      this._hideError(inputElement) 
-      
+      this._hideError(inputElement);
     });
-   
   }
 
-
   _setEventListenersValidate(formElement) {
-    const inputList = formElement.querySelectorAll(this._inputSelector);
-    const submitButtonElement = formElement.querySelector(
-      this._submitButtonSelector
-    );
+    this._inputList = formElement.querySelectorAll(this._inputSelector);
+    console.log(this._inputList);
+    this._submitButton = formElement.querySelector(this._submitButtonSelector);
     const inputListIterator = (inputElement) => {
       const handleInput = (event) => {
         this._checkValidity(inputElement);
-        this._toggleButtonState(inputList, submitButtonElement);
+        this._toggleButtonState(this._inputList, this._submitButton);
       };
       inputElement.addEventListener("input", handleInput);
     };
-    this._toggleButtonState(inputList, submitButtonElement);
-    inputList.forEach(inputListIterator);
+    this._toggleButtonState(this._inputList, this._submitButton);
+    this._inputList.forEach(inputListIterator);
   }
 
   enableValidation() {
-    const formList = document.querySelectorAll(this._formSelector);
     const formListIterator = (formElement) => {
       this._setEventListenersValidate(formElement);
     };
-    formList.forEach(formListIterator);
+    this._formlist.forEach(formListIterator);
   }
 }
