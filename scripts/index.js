@@ -1,5 +1,5 @@
 import {Card, initialCards} from "./card.js"
-import {FormValidator} from "./formValidator.js"
+import {FormValidator} from "./formValidator1.js"
 
 const popupElementAddUser = document.querySelector(".popup_add_user");
 const popupOpenButtonElementAddUser = document.querySelector(
@@ -11,7 +11,8 @@ const popupOpenButtonElementAddCard = document.querySelector(
   ".profile__add-button"
 );
 
-const formElementAddUser = document.querySelector(".form_add_user");
+const formElementAddUser = popupElementAddUser.querySelector(".form_add_user");
+const formElementAddCard = popupElementAddCard.querySelector(".form_add_card");
 const nameInput = formElementAddUser.querySelector(".form__input_meaning_name");
 const jobInput = formElementAddUser.querySelector(".form__input_meaning_job");
 const nameInputValue = document.querySelector(".profile__title");
@@ -30,7 +31,22 @@ const elementImageBigPicture = popupElementBigPicture.querySelector(".popup__ima
     const elementTitleBigPicture = popupElementBigPicture.querySelector(  ".popup__title_big_picture"
     );
 
-export function openPopup(item) {
+    const validtionClass = {
+      formSelector: ".form",
+      inputSelector: ".form__input",
+      submitButtonSelector: ".popup__submit-button",
+      inactiveButtonClass: "popup__submit-button_inactive",
+      inputErrorClass: "form__input_type_error",
+      errorClass: "form__input-error_active",
+      formSection: ".form__section"
+    };
+
+const editProfileValidator = new FormValidator(validtionClass, formElementAddUser);
+const addCardValidator = new FormValidator(validtionClass, formElementAddCard);
+editProfileValidator.enableValidation();
+addCardValidator.enableValidation();
+
+ function openPopup(item) {
   item.classList.add("popup_opened");
   keyEscapeListener.addEventListener("keydown", closeKeyEscape);
 }
@@ -160,23 +176,15 @@ popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
 
 
 
-const validtionClass = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".popup__submit-button",
-  inactiveButtonClass: "popup__submit-button_inactive",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active",
-  formSection: ".form__section"
-};
 
 
 
-function startValidation() {
 
-  const formValidator = new FormValidator(validtionClass);
-  const startEnableValidation = formValidator.enableValidation();
+// function startValidation() {
+
+//   const formValidator = new FormValidator(validtionClass);
+//   const startEnableValidation = formValidator.enableValidation();
   
-  return startEnableValidation;
-}
-startValidation();
+//   return startEnableValidation;
+// }
+// startValidation();
