@@ -33,12 +33,13 @@ const elementImageBigPicture = popupElementBigPicture.querySelector(".popup__ima
 
     const validtionClass = {
       formSelector: ".form",
+      formSection: ".form__section",
       inputSelector: ".form__input",
       submitButtonSelector: ".popup__submit-button",
       inactiveButtonClass: "popup__submit-button_inactive",
       inputErrorClass: "form__input_type_error",
-      errorClass: "form__input-error_active",
-      formSection: ".form__section"
+      errorClass: "form__input-error_active"
+      
     };
 
 const editProfileValidator = new FormValidator(validtionClass, formElementAddUser);
