@@ -3,14 +3,16 @@ export class FormValidator {
     this._form = form;
     this._settings = settings;
     this._inputlist = Array.from(
-      this._form.querySelector(this._settings.inputSelector)
+      this._form.querySelectorAll(this._settings.inputSelector)
     );
     this._buttonElement = this._form.querySelector(
       this._settings.submitButtonSelector
     );
   }
   _getErrorElement(inputElement) {
-    return inputElement.closest(this._settings.formSelector).querySelector(".form__input-error");
+    return inputElement
+      .closest(this._settings.formSection)
+      .querySelector(".form__input-error");
   }
 
   _showError(inputElement, errorMessage) {
@@ -77,4 +79,4 @@ export class FormValidator {
   }
 }
 
-//   
+//

@@ -7,7 +7,7 @@ export class FormValidator {
     this._inputErrorClass = validtionClass.inputErrorClass;
     this._errorClass = validtionClass.errorClass;
     this._formSection = validtionClass.formSection;
-
+    this._inputList = this._formSelector.querySelectorAll(this._inputSelector)
     this._formlist = document.querySelectorAll(this._formSelector);
   }
   _getErrorElement(inputElement) {
@@ -61,8 +61,8 @@ export class FormValidator {
     });
   }
 
-  _setEventListenersValidate(formElement) {
-    this._inputList = formElement.querySelectorAll(this._inputSelector);
+  _setEventListenersValidate() {
+    // this._inputList = formElement.querySelectorAll(this._inputSelector);
     console.log(this._inputList);
     this._submitButton = formElement.querySelector(this._submitButtonSelector);
     const inputListIterator = (inputElement) => {
@@ -77,9 +77,9 @@ export class FormValidator {
   }
 
   enableValidation() {
-    const formListIterator = (formElement) => {
-      this._setEventListenersValidate(formElement);
-    };
-    this._formlist.forEach(formListIterator);
+    // const formListIterator = (formElement) => {
+      this._setEventListenersValidate();
+  //   };
+  //   this._formlist.forEach(formListIterator);
   }
 }
