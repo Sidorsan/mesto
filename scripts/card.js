@@ -1,4 +1,3 @@
-
 export const initialCards = [
   {
     name: "Архыз",
@@ -25,8 +24,6 @@ export const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-
-
 
 export class Card {
   constructor(data, cardSelector, handleCardClick) {
@@ -69,10 +66,8 @@ export class Card {
         evt.target.classList.toggle("element__like_active");
       });
 
-      this._cardImage
-      .addEventListener("click", () => {
-       // this._handleBigPicture();
-       this._handleCardClick(this._name, this._link)
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
+    });
   }
 }
