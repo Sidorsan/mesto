@@ -1,5 +1,5 @@
-import { Card, initialCards } from "./card.js";
-import { FormValidator } from "./formValidator.js";
+import { Card, initialCards } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
 const popupElementAddUser = document.querySelector(".popup_add_user");
 const popupOpenButtonElementAddUser = document.querySelector(
@@ -143,10 +143,12 @@ const settings = {
   formSelector: ".form",
   formSection: ".form__section",
   inputSelector: ".form__input",
+  inputSelectorError: ".form__input-error",
   submitButtonSelector: ".popup__submit-button",
   inactiveButtonClass: "popup__submit-button_inactive",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_active",
+
 };
 const formValidators = {};
 

@@ -12,7 +12,7 @@ export class FormValidator {
   _getErrorElement(inputElement) {
     return inputElement
       .closest(this._settings.formSection)
-      .querySelector(".form__input-error");
+      .querySelector(this._settings.inputSelectorError);
   }
 
   _showError(inputElement, errorMessage) {
