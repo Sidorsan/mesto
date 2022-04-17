@@ -1,5 +1,6 @@
 import { Card, initialCards } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js";
 
 const popupElementAddUser = document.querySelector(".popup_add_user");
 const popupOpenButtonElementAddUser = document.querySelector(
@@ -34,6 +35,20 @@ const elementTitleBigPicture = popupElementBigPicture.querySelector(
 );
 
 const cardsSection = document.querySelector(".element__container");
+
+
+
+
+const cardList = new Section({ items: initialCards, renderer: (item) => {
+  const card = new Card (item, ".item-template", handleCardClick)
+    const cardElement = card.createCard();
+    cardList.addItem(cardElement);} }, cardsSection);
+    cardList.renderItems();
+
+
+
+
+
 
 function openPopup(item) {
   item.classList.add("popup_opened");
@@ -107,21 +122,21 @@ function handleCardClick(name, link) {
   openPopup(popupElementBigPicture);
 }
 
-function createCard(item) {
-  const card = new Card(item, ".item-template", handleCardClick);
-  const cardElement = card.createCard();
-  return cardElement;
-}
+// function createCard(item) {
+//   const card = new Card(item, ".item-template", handleCardClick);
+//   const cardElement = card.createCard();
+//   return cardElement;
+// }
 
-function renderItem(item) {
-  const cardElement = createCard(item);
-  cardsSection.prepend(cardElement);
-}
+// function renderItem(item) {
+//   const cardElement = createCard(item);
+//   cardsSection.prepend(cardElement);
+// }
 
-function renderItems(items) {
-  items.forEach(renderItem);
-}
-renderItems(initialCards);
+// function renderItems(items) {
+//   items.forEach(renderItem);
+// }
+// renderItems(initialCards);
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
@@ -133,7 +148,7 @@ function handleCardFormSubmit(evt) {
       link: link,
     },
   ];
-  renderItems(newArray);
+  cardList.renderItem(newArray);
   closeClosestPopup(evt);
   resetForm(popupElementAddCard);
 }
