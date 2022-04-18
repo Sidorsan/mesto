@@ -26,7 +26,7 @@ const inputCardLink = popupElementAddCard.querySelector(
   ".form__input_card_link"
 );
 
-const page = document.querySelector(".page");
+
 
 const popupElementBigPicture = document.querySelector(".popup_big_picture");
 const elementImageBigPicture =
@@ -49,7 +49,7 @@ const cardList = new Section({ items: initialCards, renderer: (item) => {
 
 
 
-const popup = new Popup (popupSelector);
+
 
 // function openPopup(item) {
 //   item.classList.add("popup_opened");
@@ -71,7 +71,8 @@ const popup = new Popup (popupSelector);
 // }
 
 function openPopupAddUser() {
-  popup.openPopup(popupElementAddUser);
+  const popup = new Popup (popupElementAddUser);
+  popup.openPopup();
   nameInput.value = nameInputValue.textContent;
   jobInput.value = jobInputValue.textContent;
   formValidators["form_add_user"].resetValidation();
