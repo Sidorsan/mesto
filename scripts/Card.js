@@ -1,3 +1,5 @@
+import PopupWithImage from "./PopupWithImage.js";
+const popupElementBigPicture = document.querySelector(".popup_big_picture");
 export const initialCards = [
   {
     name: "Архыз",
@@ -67,7 +69,8 @@ export class Card {
       });
 
     this._cardImage.addEventListener("click", () => {
-      this._handleCardClick(this._name, this._link);
+      const popupWithImage = new PopupWithImage(popupElementBigPicture);
+      popupWithImage.openPopup(this._name, this._link);
     });
   }
 }

@@ -25,19 +25,19 @@ const inputCardLink = popupElementAddCard.querySelector(
   ".form__input_card_link"
 );
 
-const popupElementBigPicture = document.querySelector(".popup_big_picture");
-const elementImageBigPicture =
-  popupElementBigPicture.querySelector(".popup__image");
-const elementTitleBigPicture = popupElementBigPicture.querySelector(
-  ".popup__title_big_picture"
-);
+// const popupElementBigPicture = document.querySelector(".popup_big_picture");
+// const elementImageBigPicture =
+//   popupElementBigPicture.querySelector(".popup__image");
+// const elementTitleBigPicture = popupElementBigPicture.querySelector(
+//   ".popup__title_big_picture"
+// );
 
 const cardsSection = document.querySelector(".element__container");
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, ".item-template", handleCardClick);
+      const card = new Card(item, ".item-template");
       const cardElement = card.createCard();
       cardList.addItem(cardElement);
     },
@@ -45,6 +45,14 @@ const cardList = new Section(
   cardsSection
 );
 cardList.renderItems();
+
+// function handleCardClick(name, link) {
+//   const popup = new Popup(popupElementBigPicture);
+//   popup.openPopup();
+//   elementImageBigPicture.src = link;
+//   elementImageBigPicture.alt = name;
+//   elementTitleBigPicture.textContent = name;
+// }
 
 // function openPopup(item) {
 //   item.classList.add("popup_opened");
@@ -113,13 +121,7 @@ function resetForm(item) {
 }
 
 
-function handleCardClick(name, link) {
-  const popup = new Popup(popupElementBigPicture);
-  popup.openPopup();
-  elementImageBigPicture.src = link;
-  elementImageBigPicture.alt = name;
-  elementTitleBigPicture.textContent = name;
-}
+
 
 // const popupList = document.querySelectorAll(".popup");
 // const popups = Array.from(popupList);
