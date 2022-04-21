@@ -1,9 +1,9 @@
-import { Card, initialCards } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import Section from "./Section.js";
-import Popup from "./Popup.js";
-import PopupWithForm from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import { Card, initialCards } from "../scripts/Card.js";
+import { FormValidator } from "../scripts/FormValidator.js";
+import Section from "../scripts/Section.js";
+import Popup from "../scripts/Popup.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import { UserInfo } from "../scripts/UserInfo.js";
 
 
 const popupElementAddUser = document.querySelector(".popup_add_user");

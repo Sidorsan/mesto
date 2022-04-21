@@ -1,4 +1,5 @@
-import PopupWithImage from "./PopupWithImage.js";
+import PopupWithImage from "./PicturePopup.js";
+
 const popupElementBigPicture = document.querySelector(".popup_big_picture");
 export const initialCards = [
   {

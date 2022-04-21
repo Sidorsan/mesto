@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
-
-const elementImageBigPicture = document.querySelector(".popup__image");
-const elementTitleBigPicture = document.querySelector(
+const popupElementBigPicture = document.querySelector(".popup_big_picture");
+const elementImageBigPicture = popupElementBigPicture.querySelector(".popup__image");
+const elementTitleBigPicture = popupElementBigPicture.querySelector(
   ".popup__title_big_picture"
 );
 

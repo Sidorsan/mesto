@@ -15,4 +15,3 @@ export class UserInfo {
     jobInputValue.textContent = this._jobSelector.value;
   }
 }
-
