@@ -95,53 +95,64 @@ popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
 
 
-const form = new PopupWithForm (popupElementAddUser, {
+const handleProfileFormSubmit = new PopupWithForm (popupElementAddUser, {
   handleFormSubmit: () => {
     nameInputValue.textContent = nameInput.value;
     jobInputValue.textContent = jobInput.value;
-    popupAddUser.closePopup();
+    // popupAddUser.closePopup();
   }}
 )
-form.setEventListeners()
-
-
-
-
-
-
-
-
-
+handleProfileFormSubmit.setEventListeners()
 
 
 const popupAddCard = new Popup(popupElementAddCard);
 
 function openPopupAddCard() {
   popupAddCard.openPopup();
-  resetForm(popupElementAddCard);
+  // resetForm(popupElementAddCard);
   formValidators["form_add_card"].resetValidation();
 }
 popupOpenButtonElementAddCard.addEventListener("click", openPopupAddCard);
 
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
-  const title = inputCardTitle.value;
-  const link = inputCardLink.value;
-  const newArray = [
-    {
-      name: title,
-      link: link,
-    },
-  ];
-  cardList.renderItem(newArray);
-  popupAddCard.closePopup();
-  resetForm(popupElementAddCard);
-}
-popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
+// function handleCardFormSubmit(evt) {
+//   evt.preventDefault();
+//   const title = inputCardTitle.value;
+//   const link = inputCardLink.value;
+//   const newArray = [
+//     {
+//       name: title,
+//       link: link,
+//     },
+//   ];
+//   cardList.renderItem(newArray);
+//   popupAddCard.closePopup();
+//   resetForm(popupElementAddCard);
+// }
+// popupElementAddCard.addEventListener("submit", handleCardFormSubmit);
 
-function resetForm(item) {
-  item.querySelector(".form").reset();
-}
+
+
+const handleCardFormSubmit = new PopupWithForm (popupElementAddCard, {
+  handleFormSubmit: () => {
+    const title = inputCardTitle.value;
+    const link = inputCardLink.value;
+    const newArray = [
+      {
+        name: title,
+        link: link,
+      },
+    ];
+    cardList.renderItem(newArray);
+  }}
+)
+handleCardFormSubmit.setEventListeners();
+
+
+
+
+// function resetForm(item) {
+//   item.querySelector(".form").reset();
+// }
 
 
 
