@@ -2,6 +2,7 @@ import { Card, initialCards } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 const popupElementAddUser = document.querySelector(".popup_add_user");
 const popupOpenButtonElementAddUser = document.querySelector(
@@ -83,13 +84,35 @@ function openPopupAddUser() {
 }
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  nameInputValue.textContent = nameInput.value;
-  jobInputValue.textContent = jobInput.value;
-  popupAddUser.closePopup();
-}
-formElementAddUser.addEventListener("submit", handleProfileFormSubmit);
+// function handleProfileFormSubmit(evt) {
+//   evt.preventDefault();
+//   // nameInputValue.textContent = nameInput.value;
+//   // jobInputValue.textContent = jobInput.value;
+//   // popupAddUser.closePopup();
+// }
+// formElementAddUser.addEventListener("submit", handleProfileFormSubmit);
+
+
+
+
+const form = new PopupWithForm (popupElementAddUser, {
+  handleFormSubmit: () => {
+    nameInputValue.textContent = nameInput.value;
+    jobInputValue.textContent = jobInput.value;
+    popupAddUser.closePopup();
+  }}
+)
+form.setEventListeners()
+
+
+
+
+
+
+
+
+
+
 
 const popupAddCard = new Popup(popupElementAddCard);
 
