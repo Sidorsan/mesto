@@ -7,10 +7,15 @@ export class UserInfo {
     this._jobSelector = jobSelector;
   }
   getUserInfo() {
-    this._nameSelector.value = nameInputValue.textContent;
-    this._jobSelector.value = jobInputValue.textContent;
+    const userInfo = {
+      profileName: this._nameSelector.textContent,
+      job: this._jobSelector.textContent
+    }
+    // this._nameSelector.value = nameInputValue.textContent;
+    // this._jobSelector.value = jobInputValue.textContent;
+    return userInfo
   }
-  setUserInfo() {
+  setUserInfo(profileName, job) {
     nameInputValue.textContent = this._nameSelector.value;
     jobInputValue.textContent = this._jobSelector.value;
   }
