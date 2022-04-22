@@ -1,34 +1,22 @@
-import '../pages/index.css'
+import "../pages/index.css";
 import { Card, initialCards } from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import Section from "../scripts/Section.js";
 import Popup from "../scripts/Popup.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
 import { UserInfo } from "../scripts/UserInfo.js";
+import {
+  settings,
+  nameInput,
+  jobInput,
+  popupOpenButtonElementAddUser,
+  nameInputValue,
+  jobInputValue,
+  popupOpenButtonElementAddCard,
+  cardsSection,
+} from "../scripts/utils/constants.js";
 
-
-const popupElementAddUser = document.querySelector(".popup_add_user");
-const popupOpenButtonElementAddUser = document.querySelector(
-  ".profile__edit-button"
-);
-const formElementAddUser = popupElementAddUser.querySelector(".form_add_user");
-const nameInput = formElementAddUser.querySelector(".form__input_meaning_name");
-const jobInput = formElementAddUser.querySelector(".form__input_meaning_job");
-
-const popupElementAddCard = document.querySelector(".popup_add_card");
-const popupOpenButtonElementAddCard = document.querySelector(
-  ".profile__add-button"
-);
-
-
-const inputCardTitle = popupElementAddCard.querySelector(
-  ".form__input_card_title"
-);
-const inputCardLink = popupElementAddCard.querySelector(
-  ".form__input_card_link"
-);
-
-const cardsSection = document.querySelector(".element__container");
 const cardList = new Section(
   {
     items: initialCards,
@@ -42,25 +30,30 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-const popupAddUser = new Popup(popupElementAddUser);
-const userInfo = new UserInfo(nameInput, jobInput);
+export const popupWithImage = new PopupWithImage(".popup_big_picture");
+popupWithImage.setEventListeners();
+
+const popupAddUser = new Popup(".popup_add_user");
+
+const popupAddCard = new Popup(".popup_add_card");
+
+const userInfo = new UserInfo(nameInputValue, jobInputValue);
 
 function openPopupAddUser() {
   popupAddUser.openPopup();
-  userInfo.getUserInfo()
+  const { profileName, job } = userInfo.getUserInfo();
+  nameInput.value = profileName;
+  jobInput.value = job;
   formValidators["form_add_user"].resetValidation();
 }
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
-
-const handleProfileFormSubmit = new PopupWithForm(popupElementAddUser, {
-  handleFormSubmit: () => {
-    userInfo.setUserInfo()
+const handleProfileFormSubmit = new PopupWithForm(".popup_add_user", {
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
   },
 });
 handleProfileFormSubmit.setEventListeners();
-
-const popupAddCard = new Popup(popupElementAddCard);
 
 function openPopupAddCard() {
   popupAddCard.openPopup();
@@ -68,15 +61,12 @@ function openPopupAddCard() {
 }
 popupOpenButtonElementAddCard.addEventListener("click", openPopupAddCard);
 
-
-const handleCardFormSubmit = new PopupWithForm(popupElementAddCard, {
-  handleFormSubmit: () => {
-    const title = inputCardTitle.value;
-    const link = inputCardLink.value;
+const handleCardFormSubmit = new PopupWithForm(".popup_add_card", {
+  handleFormSubmit: (formData) => {
     const newArray = [
       {
-        name: title,
-        link: link,
+        name: formData.title,
+        link: formData.link,
       },
     ];
     cardList.renderItem(newArray);
@@ -84,16 +74,6 @@ const handleCardFormSubmit = new PopupWithForm(popupElementAddCard, {
 });
 handleCardFormSubmit.setEventListeners();
 
-const settings = {
-  formSelector: ".form",
-  formSection: ".form__section",
-  inputSelector: ".form__input",
-  inputSelectorError: ".form__input-error",
-  submitButtonSelector: ".popup__submit-button",
-  inactiveButtonClass: "popup__submit-button_inactive",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active",
-};
 const formValidators = {};
 
 const enableValidation = (settings) => {

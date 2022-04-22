@@ -1,17 +1,16 @@
-const page = document.querySelector(".page");
-
 export default class Popup {
   constructor(popupSelector) {
-    this._popupSelector = popupSelector;
+    this._popup = document.querySelector(popupSelector);
+    this._page = document.querySelector(".page");
   }
   openPopup() {
-    this._popupSelector.classList.add("popup_opened");
-    page.addEventListener("keydown", this._handleEscClose);
-    this.setEventListeners()
+    this._popup.classList.add("popup_opened");
+    this._page.addEventListener("keydown", this._handleEscClose);
   }
+  
   closePopup() {
-    this._popupSelector.classList.remove("popup_opened");
-    page.removeEventListener("keydown", this._handleEscClose);
+    this._popup.classList.remove("popup_opened");
+    this._page.removeEventListener("keydown", this._handleEscClose);
   }
 
   _handleEscClose = (evt) => {
@@ -21,7 +20,7 @@ export default class Popup {
   };
 
   setEventListeners() {
-    this._popupSelector.addEventListener("mousedown", (evt) => {
+    this._popup.addEventListener("mousedown", (evt) => {
       if (evt.target.classList.contains("popup_opened")) {
         this.closePopup();
       }
@@ -31,4 +30,3 @@ export default class Popup {
     });
   }
 }
-

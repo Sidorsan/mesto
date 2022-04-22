@@ -1,5 +1,4 @@
-import PopupWithImage from "./PicturePopup.js";
-const popupElementBigPicture = document.querySelector(".popup_big_picture");
+import { popupWithImage } from "../pages/index";
 export const initialCards = [
   {
     name: "Архыз",
@@ -69,7 +68,6 @@ export class Card {
       });
 
     this._cardImage.addEventListener("click", () => {
-      const popupWithImage = new PopupWithImage(popupElementBigPicture);
       popupWithImage.openPopup(this._name, this._link);
     });
   }
