@@ -1,4 +1,3 @@
-import { popupWithImage } from "../pages/index";
 export const initialCards = [
   {
     name: "Архыз",
@@ -27,9 +26,9 @@ export const initialCards = [
 ];
 
 export class Card {
-  constructor(data, cardSelector, handleCardClick) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor({ item, handleCardClick }, cardSelector) {
+    this._name = item.name;
+    this._link = item.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -68,7 +67,10 @@ export class Card {
       });
 
     this._cardImage.addEventListener("click", () => {
-      popupWithImage.openPopup(this._name, this._link);
+      this._handleCardClick({
+        name: this._name,
+        link: this._link,
+      });
     });
   }
 }

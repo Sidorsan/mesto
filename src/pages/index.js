@@ -17,11 +17,23 @@ import {
   cardsSection,
 } from "../scripts/utils/constants.js";
 
+const popupWithImage = new PopupWithImage(".popup_big_picture");
+popupWithImage.setEventListeners();
+
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, ".item-template");
+      const card = new Card(
+        {
+          item,
+          handleCardClick: () => {
+            popupWithImage.openPopup(item);
+          },
+        },
+        ".item-template"
+      );
+
       const cardElement = card.createCard();
       cardList.addItem(cardElement);
     },
@@ -30,12 +42,12 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-export const popupWithImage = new PopupWithImage(".popup_big_picture");
-popupWithImage.setEventListeners();
-
-const popupAddUser = new Popup(".popup_add_user");
-
-const popupAddCard = new Popup(".popup_add_card");
+const popupAddUser = new PopupWithForm(".popup_add_user", {
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
+  },
+});
+popupAddUser.setEventListeners();
 
 const userInfo = new UserInfo(nameInputValue, jobInputValue);
 
@@ -48,20 +60,7 @@ function openPopupAddUser() {
 }
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
-const handleProfileFormSubmit = new PopupWithForm(".popup_add_user", {
-  handleFormSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
-  },
-});
-handleProfileFormSubmit.setEventListeners();
-
-function openPopupAddCard() {
-  popupAddCard.openPopup();
-  formValidators["form_add_card"].resetValidation();
-}
-popupOpenButtonElementAddCard.addEventListener("click", openPopupAddCard);
-
-const handleCardFormSubmit = new PopupWithForm(".popup_add_card", {
+const popupAddCard = new PopupWithForm(".popup_add_card", {
   handleFormSubmit: (formData) => {
     const newArray = [
       {
@@ -72,7 +71,13 @@ const handleCardFormSubmit = new PopupWithForm(".popup_add_card", {
     cardList.renderItem(newArray);
   },
 });
-handleCardFormSubmit.setEventListeners();
+popupAddCard.setEventListeners();
+
+function openPopupAddCard() {
+  popupAddCard.openPopup();
+  formValidators["form_add_card"].resetValidation();
+}
+popupOpenButtonElementAddCard.addEventListener("click", openPopupAddCard);
 
 const formValidators = {};
 
