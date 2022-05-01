@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    
+<!-- удлить -->
+    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- удлить -->
   </head>
   <body class="page">
     <header class="header">
-      <img src="<%=require('./images/Vector.svg')%>" alt="логотип Место" class="header__logo" />
+      <!-- <img src="<%=require(./images/Vector.svg')%>" alt="логотип Место" class="header__logo" /> -->
+      <img src="./images/Vector.svg" alt="логотип Место" class="header__logo" />
     </header>
     <main>
       <section class="profile">
-        <img src="<%=require('./images/Avatar.jpg')%>" alt="Аватар" class="profile__avatar" />
+        <!-- оставить версию с require -->
+        <!-- <img src="<%=require('./images/Avatar.jpg')%>" alt="Аватар" class="profile__avatar" /> -->
+        <img src="./images/Avatar.jpg" alt="Аватар" class="profile__avatar" />
         <div class="profile__info">
           <div class="profile__string">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -104,8 +109,10 @@
         <h2 class="popup__title popup__title_big_picture"></h2>
       </div>
     </div>
-    
-    
+    <!-- оставить версию с require -->
+    <!-- удалить -->
+    <script type="module" src="./pages/index.js" defer></script>
+    <!-- удалить -->
      <template class="item-template">
       <li class="element__item">
         <img src="#" alt="" class="element__image" />
