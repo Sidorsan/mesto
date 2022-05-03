@@ -26,11 +26,12 @@ export const initialCards = [
 ];
 
 export class Card {
-  constructor({ item, handleCardClick }, cardSelector) {
+  constructor({ item, handleCardClick }, cardSelector, api) {
     this._name = item.name;
     this._link = item.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._api = api;
   }
   _getTemplate() {
     const itemTemplateContent = document
@@ -50,7 +51,7 @@ export class Card {
     return this._cardElement;
   }
 
-  _handleDelete(evt) {
+    _handleDelete(evt) {
     const itemElement = evt.target.closest(".element__item");
     itemElement.remove();
   }

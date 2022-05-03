@@ -11,8 +11,8 @@ export class UserInfo {
     return userInfo;
   }
 
-  setUserInfo(formData) {
-    this._nameSelector.textContent = formData.name;
-    this._jobSelector.textContent = formData.description;
+  setUserInfo(data) {
+    this._nameSelector.textContent = data.name;
+    this._jobSelector.textContent = data.about;
   }
 }
