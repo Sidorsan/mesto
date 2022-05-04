@@ -38,3 +38,6 @@
 @import url(../blocks/element/__delete/element__delete.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__content/footer__content.css);
+@import url(../blocks/element/__counter/element__counter.css);
+@import url(../blocks/element/__group/element__group.css);
+@import url(../blocks/popup/__submit-button-deleteCard/popup__submit-button-deleteCard.css);

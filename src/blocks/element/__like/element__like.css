@@ -2,10 +2,8 @@
   background: url(../../../images/heart.svg);
   background-repeat: no-repeat;
   background-size: contain;
-  width: 22px;
-  height: 19px;
-  align-self: center;
-  margin:0 20px 0 auto;
+  min-width: 22px;
+  min-height: 19px;
   border-style: none;
   padding: 0;
   cursor: pointer;

@@ -26,11 +26,13 @@ export const initialCards = [
 ];
 
 export class Card {
-  constructor({ item, handleCardClick }, cardSelector, api) {
+  constructor({ item, handleCardClick, handleDeleteIconClick}, cardSelector, api) {
     this._name = item.name;
     this._link = item.link;
+    this._counter = item.likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteIconClick = handleDeleteIconClick;
     this._api = api;
   }
   _getTemplate() {
@@ -40,9 +42,12 @@ export class Card {
       .cloneNode(true);
     return itemTemplateContent;
   }
+  
   createCard() {
     this._cardElement = this._getTemplate();
     this._cardImage = this._cardElement.querySelector(".element__image");
+    this._elementCounter = this._cardElement.querySelector(".element__counter");
+    this._likeCounter();
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardElement.querySelector(".element__title").textContent = this._name;
@@ -51,15 +56,29 @@ export class Card {
     return this._cardElement;
   }
 
-    _handleDelete(evt) {
-    const itemElement = evt.target.closest(".element__item");
-    itemElement.remove();
+  _likeCounter() {
+    if (this._counter > 0) {
+      this._elementCounter.textContent = this._counter;
+    } else {
+      this._elementCounter.textContent = "";
+    }
   }
+
+  // _handleDelete(evt) {
+  //   const itemElement = evt.target.closest(".element__item");
+  //   this._handleDeleteIconClick
+  //   itemElement.remove();
+  // }
 
   _setEventListeners() {
     this._cardElement
       .querySelector(".element__delete")
-      .addEventListener("click", this._handleDelete);
+      .addEventListener("click", 
+      // this._handleDelete
+     () => {
+      this._handleDeleteIconClick()
+     } 
+      );
 
     this._cardElement
       .querySelector(".element__like")
@@ -69,9 +88,10 @@ export class Card {
 
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick({
-        name: this._name,
-        link: this._link,
+        // name: this._name,
+        // link: this._link,
       });
+     
     });
   }
 }

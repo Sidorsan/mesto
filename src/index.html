@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-<!-- удлить -->
+    <!-- удлить -->
     <link rel="stylesheet" href="./pages/index.css" />
     <!-- удлить -->
   </head>
@@ -109,17 +109,35 @@
         <h2 class="popup__title popup__title_big_picture"></h2>
       </div>
     </div>
+   
+   
+   
+    <div class="popup popap__deleteCard">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button class="popup__submit-button popup__submit-button-deleteCard" type="submit">Да</button>
+
+      </div>
+    </div>
+
+
+
+
     <!-- оставить версию с require -->
     <!-- удалить -->
     <script type="module" src="./pages/index.js " defer></script>
     <!-- удалить -->
-     <template class="item-template">
+    <template class="item-template">
       <li class="element__item">
         <img src="#" alt="" class="element__image" />
         <button class="element__delete" type="button"></button>
         <div class="element__content">
           <h2 class="element__title"></h2>
-          <button class="element__like" type="button"></button>
+          <div class="element__group">
+            <button class="element__like" type="button"></button>
+            <h2 class="element__counter">5</h2>
+          </div>
         </div>
       </li>
     </template>

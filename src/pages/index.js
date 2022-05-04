@@ -18,6 +18,7 @@ import {
 } from "../scripts/utils/constants.js";
 
 import {Api} from "../scripts/Api.js";
+import PopupWithSubmit from "../scripts/PopupWithSubmit .js";
 // import { data } from "autoprefixer";
 
 const apiCards = new Api({
@@ -30,6 +31,7 @@ const apiCards = new Api({
 
 const createApiCards  = apiCards.getInitial()
 createApiCards.then((data) => {
+  
   const cardList = new Section(
     {
       items: data,
@@ -39,7 +41,11 @@ createApiCards.then((data) => {
             item,
             handleCardClick: () => {
               popupWithImage.openPopup(item);
+              
             },
+            handleDeleteIconClick: () => {
+               popupWihtSubmitDeleteCard.openPopup();
+            }
           },
           ".item-template"
         );
@@ -58,7 +64,8 @@ createApiCards.then((data) => {
 const popupWithImage = new PopupWithImage(".popup_big_picture");
 popupWithImage.setEventListeners();
 
-
+const popupWihtSubmitDeleteCard = new PopupWithSubmit(".popap__deleteCard")
+popupWihtSubmitDeleteCard.setEventListeners();
 
 
 const apiUser = new Api({
