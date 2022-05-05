@@ -34,7 +34,7 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
     this._ownerId = item.owner._id;
-    this._userId = "ca2be27f0f73ca0ef262d045";
+    this._userId = "ca2be27f0f73ca0ef262d045";//где взять число?
     this._cardElement = this._getTemplate();
     this._cardImage = this._cardElement.querySelector(".element__image");
     this._elementCounter = this._cardElement.querySelector(".element__counter");
