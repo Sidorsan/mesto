@@ -10,6 +10,7 @@ import {
   settings,
   nameInput,
   jobInput,
+  avatar,
   popupOpenButtonElementAddUser,
   nameInputValue,
   jobInputValue,
@@ -21,7 +22,6 @@ import { Api } from "../scripts/Api.js";
 import PopupWithSubmit from "../scripts/PopupWithSubmit .js";
 // import { data } from "autoprefixer";
 
-
 const apiUser = new Api({
   baseUrl: "https://nomoreparties.co/v1/cohort-40/users/me ",
   headers: {
@@ -29,7 +29,6 @@ const apiUser = new Api({
     "Content-Type": "application/json",
   },
 });
-
 
 const apiCards = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/cards",
@@ -39,26 +38,15 @@ const apiCards = new Api({
   },
 });
 
-
 const creatUser = apiUser.getInitial();
 creatUser
   .then((data) => {
     nameInputValue.textContent = data.name;
     jobInputValue.textContent = data.about;
-    const avatar = (document.querySelector(".profile__avatar").src =
-      data.avatar);
-      
+    nameInputValue.id = data._id;
+    avatar.src = data.avatar;
   })
   .catch((err) => alert(err));
-
-  const userId = creatUser
-  .then((data) => {
-    return data
-      
-  })
-  .catch((err) => alert(err));
-
-  console.log(userId);
 
 const popupAddUser = new PopupWithForm(".popup_add_user", {
   handleFormSubmit: (formData) => {
@@ -83,21 +71,11 @@ function openPopupAddUser() {
 }
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
-
-
-
-
-
-
-
-
 const rendererCard = (data) => {
-  
   const cardList = new Section(
     {
       items: data,
-        renderer: (item) => {
-          
+      renderer: (item) => {
         const card = new Card(
           {
             item,
@@ -107,17 +85,9 @@ const rendererCard = (data) => {
             handleDeleteIconClick: () => {
               popupWihtSubmitDeleteCard.openPopup();
             },
+            nameInputValue,
           },
 
-
-         
-          
-
-
-
-
-
-          
           ".item-template"
         );
 
@@ -160,15 +130,6 @@ popupWithImage.setEventListeners();
 
 const popupWihtSubmitDeleteCard = new PopupWithSubmit(".popap__deleteCard");
 popupWihtSubmitDeleteCard.setEventListeners();
-
-
-
-
-
-
-
-
-
 
 function openPopupAddCard() {
   popupAddCard.openPopup();
