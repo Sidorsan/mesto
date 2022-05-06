@@ -38,6 +38,16 @@ const apiCards = new Api({
   },
 });
 
+const deleteCard = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/cards/cardId",
+  headers: {
+    authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
+    "Content-Type": "application/json",
+  },
+});
+
+
+
 const creatUser = apiUser.getInitial();
 creatUser
   .then((data) => {
@@ -50,7 +60,7 @@ creatUser
 
 const popupAddUser = new PopupWithForm(".popup_add_user", {
   handleFormSubmit: (formData) => {
-    const addUserServer = apiUser
+    apiUser
       .patchUser(formData)
       .then((data) => {
         userInfo.setUserInfo(data);
@@ -128,7 +138,21 @@ popupAddCard.setEventListeners();
 const popupWithImage = new PopupWithImage(".popup_big_picture");
 popupWithImage.setEventListeners();
 
-const popupWihtSubmitDeleteCard = new PopupWithSubmit(".popap__deleteCard");
+
+
+
+
+const popupWihtSubmitDeleteCard = new PopupWithSubmit(".popap__deleteCard",
+{  handleFormSubmit: (data) => {
+    deleteCard
+      .deleteCard(data)
+      .then((data) => {
+        console.log(data);;
+      })
+      .catch((err) => alert(err));
+  },
+}
+);
 popupWihtSubmitDeleteCard.setEventListeners();
 
 function openPopupAddCard() {

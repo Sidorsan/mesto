@@ -48,6 +48,7 @@ export class Api {
       return Promise.reject('Произошла ошибка')
     });
   }
+  
   deleteCard(id) {
     return fetch(this._baseUrl, {
       method: 'DELETE',
