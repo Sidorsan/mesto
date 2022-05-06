@@ -38,8 +38,8 @@ const apiCards = new Api({
   },
 });
 
-const deleteCard = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/cards/cardId",
+const apiDeleteCard = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/cards",
   headers: {
     authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
     "Content-Type": "application/json",
@@ -60,10 +60,10 @@ creatUser
 
 const popupAddUser = new PopupWithForm(".popup_add_user", {
   handleFormSubmit: (formData) => {
-    apiUser
+          apiUser
       .patchUser(formData)
       .then((data) => {
-        userInfo.setUserInfo(data);
+         userInfo.setUserInfo(data);
       })
       .catch((err) => alert(err));
   },
@@ -81,11 +81,18 @@ function openPopupAddUser() {
 }
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
+
+
+
+
+
+
 const rendererCard = (data) => {
   const cardList = new Section(
     {
       items: data,
       renderer: (item) => {
+       
         const card = new Card(
           {
             item,
@@ -93,7 +100,7 @@ const rendererCard = (data) => {
               popupWithImage.openPopup(item);
             },
             handleDeleteIconClick: () => {
-              popupWihtSubmitDeleteCard.openPopup();
+              popupWihtSubmitDeleteCard.openPopup(item);
             },
             nameInputValue,
           },
@@ -110,10 +117,12 @@ const rendererCard = (data) => {
   cardList.renderItems();
 };
 
+
 const createApiCards = apiCards.getInitial();
 createApiCards
   .then((data) => {
     rendererCard(data);
+    console.log(data);
   })
   .catch((err) => alert(err));
 
@@ -128,7 +137,7 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
     const postCardApi = apiCards.postInitialCards(newCard);
     postCardApi
       .then((data) => {
-        rendererCard([data]);
+            rendererCard([data]);
       })
       .catch((err) => alert(err));
   },
@@ -143,11 +152,14 @@ popupWithImage.setEventListeners();
 
 
 const popupWihtSubmitDeleteCard = new PopupWithSubmit(".popap__deleteCard",
-{  handleFormSubmit: (data) => {
-    deleteCard
+{  
+  handleFormSubmit: (data) => {
+    apiCards
       .deleteCard(data)
-      .then((data) => {
-        console.log(data);;
+      .then((res) => {
+        if (!res.ok) {
+         console.log(data);
+        }
       })
       .catch((err) => alert(err));
   },

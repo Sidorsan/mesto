@@ -75,7 +75,7 @@ export class Card {
 
   // _handleDelete(evt) {
   //   const itemElement = evt.target.closest(".element__item");
-  //   this._handleDeleteIconClick
+  //   // this._handleDeleteIconClick
   //   itemElement.remove();
   // }
 
