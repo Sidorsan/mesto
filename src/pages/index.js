@@ -1,4 +1,4 @@
-import "../pages/index.css"; 
+// import "../pages/index.css"; раскоментировать
 import { Card } from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import Section from "../scripts/Section.js";

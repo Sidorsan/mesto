@@ -5,22 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-      
-     </head>
+     <!-- удлить -->
+     <link rel="stylesheet" href="./pages/index.css" />
+     <!-- удлить -->
+  </head>
   <body class="page">
     <header class="header">
-      <img src="<%=require('./images/Vector.svg')%>" alt="логотип Место" class="header__logo" />
-      
-
+      <!-- <img
+        src="<%=require('./images/Vector.svg')%>"
+        alt="логотип Место"
+        class="header__logo"
+      /> -->
     </header>
     <main>
       <section class="profile">
-       
         <div class="profile__editor-photo">
           <div class="spinner"></div>
           <img src="#" alt="Аватар" class="profile__avatar" />
         </div>
-        
+
         <div class="profile__info">
           <div class="profile__string">
             <h1 class="profile__title" id="#"></h1>
@@ -38,32 +41,31 @@
       <p class="footer__content">© 2020 Mesto Russia</p>
     </footer>
 
-
     <div class="popup popup_editor_photo">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Обновить аватар</h2>
-        <form class="form form_editor_photo" name="form_editor_photo" novalidate>
+        <form
+          class="form form_editor_photo"
+          name="form_editor_photo"
+          novalidate
+        >
           <section class="form__section">
             <input
               class="form__input form__input_editor_photo"
               type="url"
               value=""
-             
               name="avatar"
               required
             />
             <span class="form__input-error"></span>
           </section>
-          <button class="popup__submit-button" type="submit" value="Сохранить">Сохранить</button>
+          <button class="popup__submit-button" type="submit" value="Сохранить">
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
-
-
-
-
-
 
     <div class="popup popup_add_user">
       <div class="popup__container">
@@ -94,13 +96,13 @@
             />
             <span class="form__input-error"></span>
           </section>
-          <button class="popup__submit-button" type="submit" value="Сохранить">Сохранить</button>
+          <button class="popup__submit-button" type="submit" value="Сохранить">
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
 
-
-    
     <div class="popup popup_add_card">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
@@ -131,7 +133,9 @@
             <span class="form__input-error"></span>
           </section>
 
-          <button class="popup__submit-button" type="submit" value="Создать">Создать</button>
+          <button class="popup__submit-button" type="submit" value="Создать">
+            Создать
+          </button>
         </form>
       </div>
     </div>
@@ -142,20 +146,22 @@
         <h2 class="popup__title popup__title_big_picture"></h2>
       </div>
     </div>
-   
-   
-   
+
     <div class="popup popup_deleteCard">
       <form class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Вы уверены?</h2>
-        <button class="popup__submit-button popup__submit-button-deleteCard" type="submit">Да</button>
-
+        <button
+          class="popup__submit-button popup__submit-button-deleteCard"
+          type="submit"
+        >
+          Да
+        </button>
       </form>
     </div>
-
-
-
+  <!-- удалить -->
+  <script type="module" src="./pages/index.js " defer></script>
+  <!-- удалить -->
     <template class="item-template">
       <li class="element__item">
         <img src="#" alt="" class="element__image" />
