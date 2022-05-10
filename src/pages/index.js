@@ -172,7 +172,7 @@ const popupWithImage = new PopupWithImage(".popup_big_picture");
 popupWithImage.setEventListeners();
 
 const popupWihtSubmitDeleteCard = new PopupWithSubmit(
-  ".popap_deleteCard",
+  ".popup_deleteCard",
   {
     handleFormSubmit: (data) => {
       apiCards
