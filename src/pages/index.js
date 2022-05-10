@@ -1,4 +1,4 @@
-// import "../pages/index.css"; раскоментировать
+import "../pages/index.css"; 
 import { Card } from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import Section from "../scripts/Section.js";
@@ -17,14 +17,13 @@ import {
   jobInputValue,
   popupOpenButtonElementAddCard,
   cardsSection,
-  spinner,
-} from "../scripts/utils/constants.js";
+ } from "../scripts/utils/constants.js";
 
 import { Api } from "../scripts/Api.js";
 import PopupWithSubmit from "../scripts/PopupWithSubmit .js";
 
 const apiUser = new Api({
-  baseUrl: "https://nomoreparties.co/v1/cohort-40/users/me ",
+  baseUrl: "https://nomoreparties.co/v1/cohort-40/users/me",
   headers: {
     authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
     "Content-Type": "application/json",
