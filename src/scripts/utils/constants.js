@@ -22,6 +22,10 @@ export const popupOpenButtonElementAddUser = document.querySelector(
 export const nameInputValue = document.querySelector(".profile__title");
 export const jobInputValue = document.querySelector(".profile__subtitle");
 export const avatar = document.querySelector(".profile__avatar");
+export const popupOpenButtonElementAvatarEditor = document.querySelector(
+  ".profile__editor-photo"
+);
+export const spinner = document.querySelector('.spinner');
 
 
 export const popupOpenButtonElementAddCard = document.querySelector(
