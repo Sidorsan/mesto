@@ -1,4 +1,4 @@
-// import "../pages/index.css"; раскоментировать
+import "../pages/index.css";
 import { Card } from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
 import Section from "../scripts/Section.js";
@@ -17,7 +17,7 @@ import {
   jobInputValue,
   popupOpenButtonElementAddCard,
   cardsSection,
- } from "../scripts/utils/constants.js";
+} from "../scripts/utils/constants.js";
 
 import { Api } from "../scripts/Api.js";
 import PopupWithSubmit from "../scripts/PopupWithSubmit .js";
@@ -30,45 +30,15 @@ const api = new Api({
   },
 });
 
-
-// const apiCards = new Api({
-//   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/cards",
-//   headers: {
-//     authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
-//     "Content-Type": "application/json",
-//   },
-// });
-
-// const apiAvatar = new Api({
-//   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/users/me/avatar",
-//   headers: {
-//     authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
-//     "Content-Type": "application/json",
-//   },
-// });
 const userInfo = new UserInfo(nameInputValue, jobInputValue, avatar);
 
-
-api.getAllNeededData()
+api
+  .getAllNeededData()
   .then(([userData, cards]) => {
-    userInfo.setUserInfo(userData)
-    // rendererCard(cards);
-      // тут установка данных пользователя
-      // и тут отрисовка карточек
-cardList.renderItem(cards)
-      
+    userInfo.setUserInfo(userData);
+    cardList.renderItem(cards);
   })
   .catch((err) => alert(err));
-
-// const creatUser = api.getInitialUser();
-// creatUser
-//   .then((data) => {
-//     nameInputValue.textContent = data.name;
-//     jobInputValue.textContent = data.about;
-//     nameInputValue.id = data._id;
-//     avatar.src = data.avatar;
-//   })
-//   .catch((err) => alert(err));
 
 const popupAddUser = new PopupWithForm(".popup_add_user", {
   handleFormSubmit: (formData) => {
@@ -77,16 +47,15 @@ const popupAddUser = new PopupWithForm(".popup_add_user", {
       .patchUser(formData)
       .then((data) => {
         userInfo.setUserInfo(data);
+        popupAddUser.closePopup();
       })
       .catch((err) => alert(err))
       .finally(() => {
         popupAddUser.renderLoading(false);
-     });
+      });
   },
 });
 popupAddUser.setEventListeners();
-
-
 
 function openPopupAddUser() {
   popupAddUser.openPopup();
@@ -97,20 +66,19 @@ function openPopupAddUser() {
 }
 popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 
-
-
 const popupAvatarEditor = new PopupWithForm(".popup_editor_photo", {
   handleFormSubmit: (formData) => {
     popupAvatarEditor.renderLoading(true);
     const patchAvatar = api.patchAvatar(formData);
     patchAvatar
       .then((data) => {
-        userInfo.setUserInfo(data)
+        userInfo.setUserInfo(data);
+        popupAvatarEditor.closePopup()
       })
       .catch((err) => alert(err))
       .finally(() => {
         popupAvatarEditor.renderLoading(false);
-     });
+      });
   },
 });
 popupAvatarEditor.setEventListeners();
@@ -124,79 +92,37 @@ popupOpenButtonElementAvatarEditor.addEventListener(
   openPopupAvatarEditor
 );
 
-// const rendererCard = (data) => {
-//   const cardList = new Section(
-//     {
-//       items: data,
-//       renderer: (item) => {
-//         const card = new Card(
-//           {
-//             item,
-//             handleCardClick: () => {
-//               popupWithImage.openPopup(item);
-//             },
-//             handleDeleteIconClick: () => {
-//               popupWihtSubmitDeleteCard.openPopup(item);
-//             },
-//             nameInputValue,
-//             api,
-//           },
-
-//           ".item-template"
-//         );
-
-//         const cardElement = card.createCard();
-//         cardList.addItem(cardElement);
-//       },
-//     },
-//     cardsSection
-//   );
-//   cardList.renderItems();
-// };
-
 const cardList = new Section(
-  {items: [], renderer: rendererCard}, cardsSection
-)
-cardList.renderItems()
-
-
+  { items: [], renderer: rendererCard },
+  cardsSection
+);
+cardList.renderItems();
 
 function createCard(item) {
-    const card = new Card(
-          {
-            item,
-            handleCardClick: () => {
-              popupWithImage.openPopup(item);
-            },
-            handleDeleteIconClick: () => {
-              popupWihtSubmitDeleteCard.openPopup(item);
-            },
-            nameInputValue,
-            api,
-          },
+  const card = new Card(
+    {
+      item,
+      handleCardClick: () => {
+        popupWithImage.openPopup(item);
+      },
+      handleDeleteIconClick: () => {
+        popupWihtSubmitDeleteCard.openPopup(item);
+      },
+      nameInputValue,
+      api,
+    },
 
-          ".item-template"
-        );
+    ".item-template"
+  );
 
-        const cardElement = card.createCard();
-       return cardElement
+  const cardElement = card.createCard();
+  return cardElement;
 }
 
-function rendererCard(cardData) {
-  const cardElement = createCard(cardData);
-  cardList.addItem(cardElement)
+function rendererCard(data) {
+  const cardElement = createCard(data);
+  cardList.addItem(cardElement);
 }
-
-
-
-
-
-// const createApiCards = api.getInitialCard();
-// createApiCards
-//   .then((data) => {
-//     rendererCard(data);
-//   })
-//   .catch((err) => alert(err));
 
 const popupAddCard = new PopupWithForm(".popup_add_card", {
   handleFormSubmit: (formData) => {
@@ -209,12 +135,13 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
     const postCardApi = api.postInitialCards(newCard);
     postCardApi
       .then((data) => {
-        rendererCard([data]);
+        cardList.renderItem([data]);
+        popupAddCard.closePopup()
       })
       .catch((err) => alert(err))
       .finally(() => {
         popupAddCard.renderLoading(false);
-     });
+      });
   },
 });
 popupAddCard.setEventListeners();
@@ -231,6 +158,7 @@ const popupWihtSubmitDeleteCard = new PopupWithSubmit(
         .then(() => {
           const el = document.getElementById(data);
           el.remove();
+          popupWihtSubmitDeleteCard.closePopup()
         })
         .catch((err) => alert(err));
     },
