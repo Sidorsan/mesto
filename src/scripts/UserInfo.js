@@ -1,7 +1,9 @@
 export class UserInfo {
-  constructor(nameSelector, jobSelector) {
+  constructor(nameSelector, jobSelector, avatar) {
     this._nameSelector = nameSelector;
     this._jobSelector = jobSelector;
+    this._avatar = avatar
+   
   }
   getUserInfo() {
     const userInfo = {
@@ -14,5 +16,7 @@ export class UserInfo {
   setUserInfo(data) {
     this._nameSelector.textContent = data.name;
     this._jobSelector.textContent = data.about;
+    this._avatar.src = data.avatar;
+    this._nameSelector.id = data._id; 
   }
 }

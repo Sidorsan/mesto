@@ -1,13 +1,14 @@
 export class Card {
   constructor(
-    { item, handleCardClick, handleDeleteIconClick, nameInputValue, apiCards },
+    { item, handleCardClick, handleDeleteIconClick, nameInputValue, api},
     cardSelector
   ) {
+    console.log(item);
     this._name = item.name;
     this._link = item.link;
     this._cardId = item._id;
     this.likes = item.likes;
-    this._apiCards = apiCards;
+    this._apiCards = api;
     this._counter = item.likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
@@ -20,6 +21,8 @@ export class Card {
     this._elementCounter = this._cardElement.querySelector(".element__counter");
     this._elementDelete = this._cardElement.querySelector(".element__delete");
     this._elementLike = this._cardElement.querySelector(".element__like");
+    console.log(item);
+
   }
   _getTemplate() {
     const itemTemplateContent = document

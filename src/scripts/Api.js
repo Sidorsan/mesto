@@ -12,15 +12,29 @@ export class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getInitial() {
-    return fetch(this._baseUrl, {
+  getInitialUser() {
+    return fetch(`https://${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
     }).then((res) => this._checkJson(res));
   }
 
+  getInitialCard() {
+    return fetch(`https://mesto.${this._baseUrl}/cards`, {
+      method: "GET",
+      headers: this._headers,
+    }).then((res) => this._checkJson(res));
+  }
+
+getAllNeededData() {
+  return Promise.all([this.getInitialUser(), this.getInitialCard()])
+}
+
+
+
+
   postInitialCards(data) {
-    return fetch(this._baseUrl, {
+    return fetch(`https://mesto.${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -31,7 +45,7 @@ export class Api {
   }
 
   patchUser(data) {
-    return fetch(this._baseUrl, {
+    return fetch(`https://${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -42,28 +56,28 @@ export class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this._baseUrl}/${id}`, {
+    return fetch(`https://mesto.${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => this._checkJson(res));
   }
 
   likeCard(id) {
-    return fetch(`${this._baseUrl}/${id}/likes`, {
+    return fetch(`https://mesto.${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then((res) => this._checkJson(res));
   }
 
   disLikeCard(id) {
-    return fetch(`${this._baseUrl}/${id}/likes`, {
+    return fetch(`https://mesto.${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => this._checkJson(res));
   }
 
   patchAvatar(data) {
-    return fetch(this._baseUrl, {
+    return fetch(`https://mesto.${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({

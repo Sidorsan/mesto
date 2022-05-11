@@ -22,44 +22,58 @@ import {
 import { Api } from "../scripts/Api.js";
 import PopupWithSubmit from "../scripts/PopupWithSubmit .js";
 
-const apiUser = new Api({
-  baseUrl: "https://nomoreparties.co/v1/cohort-40/users/me",
+const api = new Api({
+  baseUrl: "nomoreparties.co/v1/cohort-40",
   headers: {
     authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
     "Content-Type": "application/json",
   },
 });
 
-const apiCards = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/cards",
-  headers: {
-    authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
-    "Content-Type": "application/json",
-  },
-});
 
-const apiAvatar = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/users/me/avatar",
-  headers: {
-    authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
-    "Content-Type": "application/json",
-  },
-});
+// const apiCards = new Api({
+//   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/cards",
+//   headers: {
+//     authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
+//     "Content-Type": "application/json",
+//   },
+// });
 
-const creatUser = apiUser.getInitial();
-creatUser
-  .then((data) => {
-    nameInputValue.textContent = data.name;
-    jobInputValue.textContent = data.about;
-    nameInputValue.id = data._id;
-    avatar.src = data.avatar;
+// const apiAvatar = new Api({
+//   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/users/me/avatar",
+//   headers: {
+//     authorization: "ce53d5da-a469-4e90-8116-8784a96c30a0",
+//     "Content-Type": "application/json",
+//   },
+// });
+const userInfo = new UserInfo(nameInputValue, jobInputValue, avatar);
+
+
+api.getAllNeededData()
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData)
+    // rendererCard(cards);
+      // тут установка данных пользователя
+      // и тут отрисовка карточек
+cardList.renderItem(cards)
+      
   })
   .catch((err) => alert(err));
+
+// const creatUser = api.getInitialUser();
+// creatUser
+//   .then((data) => {
+//     nameInputValue.textContent = data.name;
+//     jobInputValue.textContent = data.about;
+//     nameInputValue.id = data._id;
+//     avatar.src = data.avatar;
+//   })
+//   .catch((err) => alert(err));
 
 const popupAddUser = new PopupWithForm(".popup_add_user", {
   handleFormSubmit: (formData) => {
     popupAddUser.renderLoading(true);
-    apiUser
+    api
       .patchUser(formData)
       .then((data) => {
         userInfo.setUserInfo(data);
@@ -72,7 +86,7 @@ const popupAddUser = new PopupWithForm(".popup_add_user", {
 });
 popupAddUser.setEventListeners();
 
-const userInfo = new UserInfo(nameInputValue, jobInputValue);
+
 
 function openPopupAddUser() {
   popupAddUser.openPopup();
@@ -88,10 +102,10 @@ popupOpenButtonElementAddUser.addEventListener("click", openPopupAddUser);
 const popupAvatarEditor = new PopupWithForm(".popup_editor_photo", {
   handleFormSubmit: (formData) => {
     popupAvatarEditor.renderLoading(true);
-    const patchAvatar = apiAvatar.patchAvatar(formData);
+    const patchAvatar = api.patchAvatar(formData);
     patchAvatar
       .then((data) => {
-        avatar.src = data.avatar;
+        userInfo.setUserInfo(data)
       })
       .catch((err) => alert(err))
       .finally(() => {
@@ -110,12 +124,45 @@ popupOpenButtonElementAvatarEditor.addEventListener(
   openPopupAvatarEditor
 );
 
-const rendererCard = (data) => {
-  const cardList = new Section(
-    {
-      items: data,
-      renderer: (item) => {
-        const card = new Card(
+// const rendererCard = (data) => {
+//   const cardList = new Section(
+//     {
+//       items: data,
+//       renderer: (item) => {
+//         const card = new Card(
+//           {
+//             item,
+//             handleCardClick: () => {
+//               popupWithImage.openPopup(item);
+//             },
+//             handleDeleteIconClick: () => {
+//               popupWihtSubmitDeleteCard.openPopup(item);
+//             },
+//             nameInputValue,
+//             api,
+//           },
+
+//           ".item-template"
+//         );
+
+//         const cardElement = card.createCard();
+//         cardList.addItem(cardElement);
+//       },
+//     },
+//     cardsSection
+//   );
+//   cardList.renderItems();
+// };
+
+const cardList = new Section(
+  {items: [], renderer: rendererCard}, cardsSection
+)
+cardList.renderItems()
+
+
+
+function createCard(item) {
+    const card = new Card(
           {
             item,
             handleCardClick: () => {
@@ -125,27 +172,31 @@ const rendererCard = (data) => {
               popupWihtSubmitDeleteCard.openPopup(item);
             },
             nameInputValue,
-            apiCards,
+            api,
           },
 
           ".item-template"
         );
 
         const cardElement = card.createCard();
-        cardList.addItem(cardElement);
-      },
-    },
-    cardsSection
-  );
-  cardList.renderItems();
-};
+       return cardElement
+}
 
-const createApiCards = apiCards.getInitial();
-createApiCards
-  .then((data) => {
-    rendererCard(data);
-  })
-  .catch((err) => alert(err));
+function rendererCard(cardData) {
+  const cardElement = createCard(cardData);
+  cardList.addItem(cardElement)
+}
+
+
+
+
+
+// const createApiCards = api.getInitialCard();
+// createApiCards
+//   .then((data) => {
+//     rendererCard(data);
+//   })
+//   .catch((err) => alert(err));
 
 const popupAddCard = new PopupWithForm(".popup_add_card", {
   handleFormSubmit: (formData) => {
@@ -155,7 +206,7 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
       link: formData.link,
     };
 
-    const postCardApi = apiCards.postInitialCards(newCard);
+    const postCardApi = api.postInitialCards(newCard);
     postCardApi
       .then((data) => {
         rendererCard([data]);
@@ -175,7 +226,7 @@ const popupWihtSubmitDeleteCard = new PopupWithSubmit(
   ".popup_deleteCard",
   {
     handleFormSubmit: (data) => {
-      apiCards
+      api
         .deleteCard(data)
         .then(() => {
           const el = document.getElementById(data);
@@ -184,7 +235,7 @@ const popupWihtSubmitDeleteCard = new PopupWithSubmit(
         .catch((err) => alert(err));
     },
   },
-  apiCards
+  api
 );
 popupWihtSubmitDeleteCard.setEventListeners();
 
